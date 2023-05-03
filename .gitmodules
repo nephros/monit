@@ -1,0 +1,3 @@
+[submodule "monit"]
+	path = monit
+	url = https://bitbucket.org/tildeslash/monit/
