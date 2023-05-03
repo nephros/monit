@@ -39,6 +39,13 @@ RpmLintIgnore:
   - 'no-changelogname-tag'
   - 'invalid-url'
 #Patches:
+#
+Macros:
+  - |
+    spectacle_bug; hack_fix
+    %if 0%{?sailfishos_version} > 40300
+    BuildRequires:  pkgconfig(libcrypt)
+    %endif
 #Requires:
 PkgBR:
     - pam-devel
@@ -51,7 +58,7 @@ PkgBR:
 PkgConfigBR:
     - zlib
     - libssl
-    - libcrypt
+    # libcrypt
 #Configure: none
 ConfigOptions:
   - '--enable-optimized'

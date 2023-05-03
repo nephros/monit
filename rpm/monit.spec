@@ -7,6 +7,10 @@ Name:       monit
 
 # >> macros
 # << macros
+%define spectacle_bug hack_fix
+%if 0%{?sailfishos_version} > 40300
+BuildRequires:  pkgconfig(libcrypt)
+%endif
 
 Summary:    Pro-active monitoring utility for unix systems
 Version:    5.34.0
@@ -21,7 +25,6 @@ Source100:  monit.yaml
 Source101:  monit-rpmlintrc
 BuildRequires:  pkgconfig(zlib)
 BuildRequires:  pkgconfig(libssl)
-BuildRequires:  pkgconfig(libcrypt)
 BuildRequires:  pam-devel
 BuildRequires:  systemd
 BuildRequires:  automake
