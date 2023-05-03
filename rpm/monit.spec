@@ -95,6 +95,7 @@ install -m 644 -D system/bash/%{name} %{buildroot}%{_sysconfdir}/bash_completion
 mkdir -p %{buildroot}%{_sysconfdir}/%{name}.d
 for size in 76 512; do
 install -m 644 -D ../icons/Icon/Monit-Icon-${size}x${size}@1x.png %{buildroot}%{_datadir}/icons/hicolor/${size}x${size}/apps/%{name}.png
+install -m 644 -D ../icons/Logo/Monit-Logo-${size}x${size}@1x.png %{buildroot}%{_datadir}/icons/hicolor/${size}x${size}/apps/%{name}-logo.png
 done
 # << install post
 
