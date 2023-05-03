@@ -85,6 +85,9 @@ install -m 644 -D %SOURCE2 %{buildroot}%{_datadir}/applications/monit-web.deskto
 install -m 644 -D system/startup/%{name}.service %{buildroot}/%{_unitdir}/%{name}.service
 install -m 644 -D system/bash/%{name} %{buildroot}%{_sysconfdir}/bash_completion.d/%{name}
 mkdir -p %{buildroot}%{_sysconfdir}/%{name}.d
+for size in 76 512; do
+install -m 644 -D ../icons/Icon/Monit-Icon-${size}x${size}@1x.png %{buildroot}%{_datadir}/icons/hicolor/${size}x${size}/apps/%{name}.png
+done
 # << install post
 
 desktop-file-install --delete-original       \
@@ -97,6 +100,7 @@ desktop-file-install --delete-original       \
 %{_bindir}/*
 %{_unitdir}/%{name}.service
 %{_datadir}/applications/%{name}-web.desktop
+%{_datadir}/icons/hicolor/*/*/*.png
 %config %{_sysconfdir}/bash_completion.d/%{name}
 %config(noreplace) %{_sysconfdir}/monitrc
 %dir %{_sysconfdir}/%{name}.d

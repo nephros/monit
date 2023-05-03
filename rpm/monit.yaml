@@ -8,6 +8,7 @@ URL: https://mmonit.com/monit/dist/%{name}-%{version}.tar.gz
 SCM: https://bitbucket.org/tildeslash/monit/
 Sources:
     - '%{name}-%{version}.tar.gz'
+    # 'https://bitbucket.org/tildeslash/monit/downloads/Monit-Icons.zip'
     - 'monitrc'
     - 'monit-web.desktop'
 Description: |
@@ -57,6 +58,7 @@ Files:
   - '%{_bindir}/*'
   - '%{_unitdir}/%{name}.service'
   - '%{_datadir}/applications/%{name}-web.desktop'
+  - '%{_datadir}/icons/hicolor/*/*/*.png'
   - '%config %{_sysconfdir}/bash_completion.d/%{name}'
   - '%config(noreplace) %{_sysconfdir}/monitrc'
   - '%dir %{_sysconfdir}/%{name}.d'
