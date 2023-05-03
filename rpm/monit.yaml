@@ -1,0 +1,57 @@
+Name: monit
+Summary: Pro-active monitoring utility for unix systems
+Version: 5.33.0
+Release: 0
+Group: Applications
+License: AGPLv3+
+URL: https://mmonit.com/monit/dist/%{name}-%{version}.tar.gz
+SCM: https://bitbucket.org/tildeslash/monit/
+Sources:
+    - '%{name}-%{version}.tar.gz'
+    - 'monitrc'
+    - 'monit-web.desktop'
+Description: |
+
+
+    %if "%{?vendor}" == "chum"
+    Title: Monit
+    Type: console-application
+    PackagedBy: nephros
+    Categories:
+     - System
+    Custom:
+      Repo: https://bitbucket.org/tildeslash/monit/
+      PackagingRepo: https://gihub.com/nephros/monit/
+    PackageIcon: %{url}/master/icons/%{name}.svg
+    Links:
+      Homepage: %{url}
+    %endif
+
+SetupOptions: -q -n %{name}-%{version}/monit
+RpmLintIgnore:
+  - 'summary-too-long'
+  - 'no-changelogname-tag'
+  - 'invalid-url'
+#Patches:
+#Requires:
+PkgBR:
+    - pam-devel
+    - systemd
+PkgConfigBR:
+    - zlib
+    - libssl
+    - libcrypt
+#Configure: none
+ConfigOptions:
+  - '--enable-optimized'
+  - '--with-zlib'
+#Builder: make
+NoIconCache: true
+Files:
+  - '%license COPYING'
+  - '%{_bindir}/*'
+  - '%{_unitdir}/%{name}.service'
+  - '%{_datadir}/applications/%{name}-web.desktop'
+  - '%config %{_sysconfdir}/bash_completion.d/%{name}'
+  - '%config(noreplace) %{_sysconfdir}/monitrc'
+  - '%dir %{_sysconfdir}/%{name}.d'
