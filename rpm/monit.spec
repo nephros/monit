@@ -9,7 +9,7 @@ Name:       monit
 # << macros
 
 Summary:    Pro-active monitoring utility for unix systems
-Version:    5.33.0
+Version:    5.34.0
 Release:    0
 Group:      Applications
 License:    AGPLv3+
