@@ -17,7 +17,7 @@ Version:    5.34.0
 Release:    0
 Group:      Applications
 License:    AGPLv3+
-URL:        https://mmonit.com/monit/dist/%{name}-%{version}.tar.gz
+URL:        https://mmonit.com/monit
 Source0:    %{name}-%{version}.tar.gz
 Source1:    monitrc
 Source2:    monit-web.desktop
