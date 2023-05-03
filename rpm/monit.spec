@@ -32,9 +32,12 @@ BuildRequires:  flex
 BuildRequires:  desktop-file-utils
 
 %description
-
+%{summary}.
 
 %if "%{?vendor}" == "chum"
+Please submit your scripts and config snippets to the packaging repo so we
+can build a contrib package together.
+
 Title: Monit
 Type: console-application
 PackagedBy: nephros
@@ -47,6 +50,7 @@ Custom:
 PackageIcon: https://github.com/nephros/monit/raw/master/icons/Logo/Monit-Logo-512x512%401x.png
 Links:
   Homepage: %{url}
+  Help: https://mmonit.com/wiki/Monit
 %endif
 
 
