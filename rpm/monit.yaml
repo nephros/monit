@@ -20,10 +20,11 @@ Description: |
     PackagedBy: nephros
     Categories:
      - System
+     - Monitor
     Custom:
       Repo: https://bitbucket.org/tildeslash/monit/
-      PackagingRepo: https://gihub.com/nephros/monit/
-    PackageIcon: %{url}/master/icons/%{name}.svg
+      PackagingRepo: https://github.com/nephros/monit/
+    PackageIcon: https://github.com/nephros/monit/raw/master/icons/Logo/Monit-Logo-512x512%401x.png
     Links:
       Homepage: %{url}
     %endif
