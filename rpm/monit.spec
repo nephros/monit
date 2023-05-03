@@ -81,6 +81,7 @@ rm -rf %{buildroot}
 rm -rf %{buildroot}%{_mandir}
 rm -rf %{buildroot}%{_docdir}
 install -m 600 -D %SOURCE1 %{buildroot}%{_sysconfdir}/monitrc
+install -m 644 -D %SOURCE2 %{buildroot}%{_datadir}/applications/monit-web.desktop
 install -m 644 -D system/startup/%{name}.service %{buildroot}/%{_unitdir}/%{name}.service
 install -m 644 -D system/bash/%{name} %{buildroot}%{_sysconfdir}/bash_completion.d/%{name}
 mkdir -p %{buildroot}%{_sysconfdir}/%{name}.d
