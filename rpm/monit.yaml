@@ -37,6 +37,11 @@ RpmLintIgnore:
 PkgBR:
     - pam-devel
     - systemd
+    - automake
+    - autoconf
+    - libtool
+    - bison
+    - flex
 PkgConfigBR:
     - zlib
     - libssl

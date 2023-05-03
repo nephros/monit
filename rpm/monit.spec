@@ -24,6 +24,11 @@ BuildRequires:  pkgconfig(libssl)
 BuildRequires:  pkgconfig(libcrypt)
 BuildRequires:  pam-devel
 BuildRequires:  systemd
+BuildRequires:  automake
+BuildRequires:  autoconf
+BuildRequires:  libtool
+BuildRequires:  bison
+BuildRequires:  flex
 BuildRequires:  desktop-file-utils
 
 %description
@@ -52,6 +57,7 @@ Links:
 
 %build
 # >> build pre
+./bootstrap
 # << build pre
 
 %configure --disable-static \
