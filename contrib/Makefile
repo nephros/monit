@@ -17,10 +17,13 @@ all: install
 install: install-conf install-bin install-readme
 
 install-readme:
-	$(foreach f,$(README_FILES), $(INSTALL_CMD) -D -m 644 $f $(DESTDIR)$(PREFIX)$(BASE_DIR)/$f; )
+	$(INSTALL_CMD) -d $(DESTDIR)$(PREFIX)$(BASE_DIR)
+	$(foreach f,$(README_FILES), $(INSTALL_CMD) -D -m 644 $f $(DESTDIR)$(PREFIX)$(BASE_DIR)/$(subst conf/,,$f); )
 
 install-conf:
-	$(foreach f,$(CONFIG_FILES), $(INSTALL_CMD) -D -m 644 $f $(DESTDIR)$(PREFIX)$(CONFIG_DIR)/$(subst conf/,,$f);)
+	$(INSTALL_CMD) -d $(DESTDIR)$(PREFIX)$(CONFIG_DIR)
+	$(foreach f,$(CONFIG_FILES), $(INSTALL_CMD) -D -m 644 $f $(DESTDIR)$(PREFIX)$(CONFIG_DIR)/$(subst conf/,,$f); )
 
 install-bin:
-	$(foreach f,$(SCRIPT_FILES), $(INSTALL_CMD) -D -m 750 $f $(DESTDIR)$(PREFIX)$(SCRIPT_DIR)/$f; )
+	$(INSTALL_CMD) -d $(DESTDIR)$(PREFIX)$(SCRIPT_DIR)
+	$(foreach f,$(SCRIPT_FILES), $(INSTALL_CMD) -D -m 750 $f $(DESTDIR)$(PREFIX)$(SCRIPT_DIR)/$(subst scripts/,,$f); )

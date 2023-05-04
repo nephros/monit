@@ -34,7 +34,14 @@ Description: |
     Custom:
       Repo: https://bitbucket.org/tildeslash/monit/
       PackagingRepo: https://github.com/nephros/monit/
-    PackageIcon: https://raw.githubusercontent.com/nephros/monit/master/icons/Logo/Monit-Logo-83.5x83.5@2x.png
+    PackageIcon: https://mmonit.com/monit/img/logo.png
+    Screenshots:
+       - https://mmonit.com/monit/img/screenshots/1.png
+       - https://mmonit.com/monit/img/screenshots/9.png
+       - https://mmonit.com/monit/img/screenshots/10.png
+       - https://mmonit.com/monit/img/screenshots/2.png
+       - https://mmonit.com/monit/img/screenshots/4.png
+       - https://mmonit.com/monit/img/screenshots/5.png
     Links:
       Homepage: %{url}
       Help: https://mmonit.com/wiki/Monit
@@ -81,3 +88,33 @@ Files:
   - '%config %{_sysconfdir}/bash_completion.d/%{name}'
   - '%config(noreplace) %{_sysconfdir}/monitrc'
   - '%dir %{_sysconfdir}/%{name}.d'
+
+SubPackages:
+    - Name:  contrib
+      Summary: Community contributions for %{name}
+      Group: Applications
+      BuildArch: noarch
+      Description: |
+            %{summary}.
+
+            %if "%{?vendor}" == "chum"
+            Title: Monit Contrib
+            Type: addon
+            PackagedBy: nephros
+            Categories:
+             - System
+             - Monitor
+            Custom:
+              Repo: https://github.com/nephros/monit/
+            PackageIcon: https://mmonit.com/monit/img/logo.png
+            Links:
+              Homepage: https://github.com/nephros/monit/issues
+            %endif
+      Files:
+         - '%config %{_sysconfdir}/%{name}.d/README.md'
+         - '%dir %{_sysconfdir}/%{name}.d/scripts'
+         - '%dir %{_sysconfdir}/%{name}.d/available'
+         - '%config %{_sysconfdir}/%{name}.d/available/*.conf'
+         # we don't have scripts yet...
+         # '%config %attr(750,root,root) %{_sysconfdir}/%{name}.d/scripts/*'
+

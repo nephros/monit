@@ -57,10 +57,41 @@ Categories:
 Custom:
   Repo: https://bitbucket.org/tildeslash/monit/
   PackagingRepo: https://github.com/nephros/monit/
-PackageIcon: https://raw.githubusercontent.com/nephros/monit/master/icons/Logo/Monit-Logo-83.5x83.5@2x.png
+PackageIcon: https://mmonit.com/monit/img/logo.png
+Screenshots:
+   - https://mmonit.com/monit/img/screenshots/1.png
+   - https://mmonit.com/monit/img/screenshots/9.png
+   - https://mmonit.com/monit/img/screenshots/10.png
+   - https://mmonit.com/monit/img/screenshots/2.png
+   - https://mmonit.com/monit/img/screenshots/4.png
+   - https://mmonit.com/monit/img/screenshots/5.png
 Links:
   Homepage: %{url}
   Help: https://mmonit.com/wiki/Monit
+%endif
+
+
+%package contrib
+Summary:    Community contributions for %{name}
+Group:      Applications
+BuildArch:  noarch
+Requires:   %{name} = %{version}-%{release}
+
+%description contrib
+%{summary}.
+
+%if "%{?vendor}" == "chum"
+Title: Monit Contrib
+Type: addon
+PackagedBy: nephros
+Categories:
+ - System
+ - Monitor
+Custom:
+  Repo: https://github.com/nephros/monit/
+PackageIcon: https://mmonit.com/monit/img/logo.png
+Links:
+  Homepage: https://github.com/nephros/monit/issues
 %endif
 
 
@@ -117,6 +148,9 @@ install -m 644 -D ../icons/Logo/Monit-Logo-40x40@3x.png     %{buildroot}%{_datad
 install -m 644 -D ../icons/Logo/Monit-Logo-83.5x83.5@2x.png %{buildroot}%{_datadir}/icons/hicolor/172x172/apps/%{name}-logo.png
 install -m 644 -D ../icons/Logo/Monit-Logo-512x512@2x.png   %{buildroot}%{_datadir}/icons/hicolor/1024x1024/apps/%{name}-logo.png
 
+# install -contrib parts
+pushd ../contrib
+%make_install
 # << install post
 
 desktop-file-install --delete-original       \
@@ -135,3 +169,12 @@ desktop-file-install --delete-original       \
 %dir %{_sysconfdir}/%{name}.d
 # >> files
 # << files
+
+%files contrib
+%defattr(-,root,root,-)
+%config %{_sysconfdir}/%{name}.d/README.md
+%dir %{_sysconfdir}/%{name}.d/scripts
+%dir %{_sysconfdir}/%{name}.d/available
+%config %{_sysconfdir}/%{name}.d/available/*.conf
+# >> files contrib
+# << files contrib
