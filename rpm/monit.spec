@@ -35,12 +35,19 @@ BuildRequires:  flex
 BuildRequires:  desktop-file-utils
 
 %description
-%{summary}.
+Monit. Barking at daemons.
+
+Monit is a small Open Source utility for managing and monitoring Unix
+systems. Monit conducts automatic maintenance and repair and can execute
+meaningful causal actions in error situations.
+
+Up and running in 15 minutes!
+With all features needed for system monitoring and error recovery. It's
+like having a watchdog with a toolbox on your phone.
 
 %if "%{?vendor}" == "chum"
 Please submit your scripts and config snippets to the packaging repo so we
 can build a contrib package together.
-
 Title: Monit
 Type: console-application
 PackagedBy: nephros
@@ -50,7 +57,7 @@ Categories:
 Custom:
   Repo: https://bitbucket.org/tildeslash/monit/
   PackagingRepo: https://github.com/nephros/monit/
-PackageIcon: https://github.com/nephros/monit/raw/master/icons/Logo/Monit-Logo-512x512%401x.png
+PackageIcon: https://raw.githubusercontent.com/nephros/monit/master/icons/Logo/Monit-Logo-83.5x83.5@2x.png
 Links:
   Homepage: %{url}
   Help: https://mmonit.com/wiki/Monit
@@ -97,6 +104,19 @@ for size in 76 512; do
 install -m 644 -D ../icons/Icon/Monit-Icon-${size}x${size}@1x.png %{buildroot}%{_datadir}/icons/hicolor/${size}x${size}/apps/%{name}.png
 install -m 644 -D ../icons/Logo/Monit-Logo-${size}x${size}@1x.png %{buildroot}%{_datadir}/icons/hicolor/${size}x${size}/apps/%{name}-logo.png
 done
+
+## the icon names are a bit weird wrt. sizes, the 1x, 2x, 3x prefixes are scales??
+## Icons
+install -m 644 -D ../icons/Icon/Monit-Icon-20x20@1x.png %{buildroot}%{_datadir}/icons/hicolor/16x16/apps/%{name}.png
+install -m 644 -D ../icons/Icon/Monit-Icon-76x76@1x.png %{buildroot}%{_datadir}/icons/hicolor/64x64/apps/%{name}.png
+install -m 644 -D ../icons/Icon/Monit-Icon-76x76@2x.png %{buildroot}%{_datadir}/icons/hicolor/128x128/apps/%{name}.png
+install -m 644 -D ../icons/Icon/Monit-Icon-40x40@2x.png %{buildroot}%{_datadir}/icons/hicolor/86x86/apps/%{name}.png
+## Logos
+install -m 644 -D ../icons/Logo/Monit-Logo-20x20@1x.png %{buildroot}%{_datadir}/icons/hicolor/16x16/apps/%{name}-logo.png
+install -m 644 -D ../icons/Logo/Monit-Logo-40x40@3x.png     %{buildroot}%{_datadir}/icons/hicolor/128x128/apps/%{name}-logo.png
+install -m 644 -D ../icons/Logo/Monit-Logo-83.5x83.5@2x.png %{buildroot}%{_datadir}/icons/hicolor/172x172/apps/%{name}-logo.png
+install -m 644 -D ../icons/Logo/Monit-Logo-512x512@2x.png   %{buildroot}%{_datadir}/icons/hicolor/1024x1024/apps/%{name}-logo.png
+
 # << install post
 
 desktop-file-install --delete-original       \

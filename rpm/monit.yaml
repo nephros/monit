@@ -12,12 +12,19 @@ Sources:
     - 'monitrc'
     - 'monit-web.desktop'
 Description: |
-    %{summary}.
+    Monit. Barking at daemons.
+
+    Monit is a small Open Source utility for managing and monitoring Unix
+    systems. Monit conducts automatic maintenance and repair and can execute
+    meaningful causal actions in error situations.
+
+    Up and running in 15 minutes!
+    With all features needed for system monitoring and error recovery. It's
+    like having a watchdog with a toolbox on your phone.
 
     %if "%{?vendor}" == "chum"
     Please submit your scripts and config snippets to the packaging repo so we
     can build a contrib package together.
-
     Title: Monit
     Type: console-application
     PackagedBy: nephros
@@ -27,7 +34,7 @@ Description: |
     Custom:
       Repo: https://bitbucket.org/tildeslash/monit/
       PackagingRepo: https://github.com/nephros/monit/
-    PackageIcon: https://github.com/nephros/monit/raw/master/icons/Logo/Monit-Logo-512x512%401x.png
+    PackageIcon: https://raw.githubusercontent.com/nephros/monit/master/icons/Logo/Monit-Logo-83.5x83.5@2x.png
     Links:
       Homepage: %{url}
       Help: https://mmonit.com/wiki/Monit
