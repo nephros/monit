@@ -46,8 +46,6 @@ With all features needed for system monitoring and error recovery. It's
 like having a watchdog with a toolbox on your phone.
 
 %if "%{?vendor}" == "chum"
-Please submit your scripts and config snippets to the packaging repo so we
-can build a contrib package together.
 Title: Monit
 Type: console-application
 PackagedBy: nephros
@@ -80,9 +78,12 @@ Requires:   %{name} = %{version}-%{release}
 %description contrib
 %{summary}.
 
+Please submit your scripts and config snippets to the packaging repo so we
+can build a contrib package together.
+
 %if "%{?vendor}" == "chum"
 Title: Monit Contrib
-Type: addon
+Type: console-application
 PackagedBy: nephros
 Categories:
  - System

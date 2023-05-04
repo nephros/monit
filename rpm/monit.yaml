@@ -12,40 +12,38 @@ Sources:
     - 'monitrc'
     - 'monit-web.desktop'
 Description: |
-    Monit. Barking at daemons.
+        Monit. Barking at daemons.
 
-    Monit is a small Open Source utility for managing and monitoring Unix
-    systems. Monit conducts automatic maintenance and repair and can execute
-    meaningful causal actions in error situations.
+        Monit is a small Open Source utility for managing and monitoring Unix
+        systems. Monit conducts automatic maintenance and repair and can execute
+        meaningful causal actions in error situations.
 
-    Up and running in 15 minutes!
-    With all features needed for system monitoring and error recovery. It's
-    like having a watchdog with a toolbox on your phone.
+        Up and running in 15 minutes!
+        With all features needed for system monitoring and error recovery. It's
+        like having a watchdog with a toolbox on your phone.
 
-    %if "%{?vendor}" == "chum"
-    Please submit your scripts and config snippets to the packaging repo so we
-    can build a contrib package together.
-    Title: Monit
-    Type: console-application
-    PackagedBy: nephros
-    Categories:
-     - System
-     - Monitor
-    Custom:
-      Repo: https://bitbucket.org/tildeslash/monit/
-      PackagingRepo: https://github.com/nephros/monit/
-    PackageIcon: https://mmonit.com/monit/img/logo.png
-    Screenshots:
-       - https://mmonit.com/monit/img/screenshots/1.png
-       - https://mmonit.com/monit/img/screenshots/9.png
-       - https://mmonit.com/monit/img/screenshots/10.png
-       - https://mmonit.com/monit/img/screenshots/2.png
-       - https://mmonit.com/monit/img/screenshots/4.png
-       - https://mmonit.com/monit/img/screenshots/5.png
-    Links:
-      Homepage: %{url}
-      Help: https://mmonit.com/wiki/Monit
-    %endif
+        %if "%{?vendor}" == "chum"
+        Title: Monit
+        Type: console-application
+        PackagedBy: nephros
+        Categories:
+         - System
+         - Monitor
+        Custom:
+          Repo: https://bitbucket.org/tildeslash/monit/
+          PackagingRepo: https://github.com/nephros/monit/
+        PackageIcon: https://mmonit.com/monit/img/logo.png
+        Screenshots:
+           - https://mmonit.com/monit/img/screenshots/1.png
+           - https://mmonit.com/monit/img/screenshots/9.png
+           - https://mmonit.com/monit/img/screenshots/10.png
+           - https://mmonit.com/monit/img/screenshots/2.png
+           - https://mmonit.com/monit/img/screenshots/4.png
+           - https://mmonit.com/monit/img/screenshots/5.png
+        Links:
+          Homepage: %{url}
+          Help: https://mmonit.com/wiki/Monit
+        %endif
 
 SetupOptions: -q -n %{name}-%{version}/monit
 RpmLintIgnore:
@@ -97,9 +95,12 @@ SubPackages:
       Description: |
             %{summary}.
 
+            Please submit your scripts and config snippets to the packaging repo so we
+            can build a contrib package together.
+
             %if "%{?vendor}" == "chum"
             Title: Monit Contrib
-            Type: addon
+            Type: console-application
             PackagedBy: nephros
             Categories:
              - System

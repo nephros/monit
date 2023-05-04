@@ -8,6 +8,8 @@ Therefore, in order to activate a config, either symlink or copy from the `avail
 
 Copy if you plan to change the file, symlink if you are OK with package updates overwriting old versions.
 
+Afterwards, do a `monit reload`.
+
 ### Helper scripts
 
 If a conf file requires a helper script, that should be placed into
