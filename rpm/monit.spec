@@ -73,16 +73,18 @@ Links:
 Summary:    Community contributions for %{name}
 Group:      Applications
 BuildArch:  noarch
-Requires:   %{name} = %{version}-%{release}
+Requires:   %{name}
 
 %description contrib
 %{summary}.
 
-Please submit your scripts and config snippets to the packaging repo so we
-can build a contrib package together.
+Configurations and scripts for Monit, created by the community.
+
+Please submit your own scripts and config snippets to the packaging
+repo so we can enhance the contrib package together.
 
 %if "%{?vendor}" == "chum"
-Title: Monit Contrib
+Title: Monit Community Configs
 Type: console-application
 PackagedBy: nephros
 Categories:
@@ -92,7 +94,9 @@ Custom:
   Repo: https://github.com/nephros/monit/
 PackageIcon: https://mmonit.com/monit/img/logo.png
 Links:
-  Homepage: https://github.com/nephros/monit/issues
+  Homepage: https://github.com/nephros/monit/tree/master/contrib
+  Help: https://mmonit.com/wiki/Monit/ConfigurationExamples
+  Bugtracker: https://github.com/nephros/monit/issues
 %endif
 
 
