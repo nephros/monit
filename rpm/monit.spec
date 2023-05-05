@@ -23,6 +23,9 @@ Source1:    monitrc
 Source2:    monit-web.desktop
 Source100:  monit.yaml
 Source101:  monit-rpmlintrc
+Requires(preun): systemd
+Requires(post): systemd
+Requires(postun): systemd
 BuildRequires:  pkgconfig(zlib)
 BuildRequires:  pkgconfig(libssl)
 BuildRequires:  pam-devel
@@ -161,6 +164,21 @@ pushd ../contrib
 desktop-file-install --delete-original       \
   --dir %{buildroot}%{_datadir}/applications             \
    %{buildroot}%{_datadir}/applications/*.desktop
+
+%preun
+# >> preun
+%systemd_preun %{name}.service
+# << preun
+
+%post
+# >> post
+%systemd_post %{name}.service
+# << post
+
+%postun
+# >> postun
+%systemd_postun
+# << postun
 
 %files
 %defattr(-,root,root,-)

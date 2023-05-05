@@ -59,6 +59,12 @@ Macros:
     BuildRequires:  pkgconfig(libcrypt)
     %endif
 #Requires:
+RequiresPreUn:
+  - systemd
+RequiresPostUn:
+  - systemd
+RequiresPost:
+  - systemd
 PkgBR:
     - pam-devel
     - systemd
