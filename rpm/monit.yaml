@@ -129,6 +129,5 @@ SubPackages:
          - '%dir %{_sysconfdir}/%{name}.d/scripts'
          - '%dir %{_sysconfdir}/%{name}.d/available'
          - '%config %{_sysconfdir}/%{name}.d/available/*.conf'
-         # we don't have scripts yet...
-         # '%config %attr(750,root,root) %{_sysconfdir}/%{name}.d/scripts/*'
+         - '%config %attr(750,root,root) %{_sysconfdir}/%{name}.d/scripts/*'
 

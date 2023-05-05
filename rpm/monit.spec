@@ -199,5 +199,6 @@ desktop-file-install --delete-original       \
 %dir %{_sysconfdir}/%{name}.d/scripts
 %dir %{_sysconfdir}/%{name}.d/available
 %config %{_sysconfdir}/%{name}.d/available/*.conf
+%config %attr(750,root,root) %{_sysconfdir}/%{name}.d/scripts/*
 # >> files contrib
 # << files contrib
