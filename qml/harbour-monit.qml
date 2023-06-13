@@ -24,7 +24,7 @@ import QtQuick.XmlListModel 2.0
 import Sailfish.Silica 1.0
 import Nemo.Configuration 1.0
 //import Nemo.Mce 1.0      // power saving mode
-//import Nemo.DBus 2.0
+import Nemo.DBus 2.0
 import "pages"
 import "cover"
 
@@ -69,16 +69,14 @@ ApplicationWindow {
     ]
     // FIXME: several.requests for the same data...
     property var platformdata
-    onPlatformdataChanged: {
-        console.debug("data:", JSON.stringify(platformdata,null,2))
-    }
+
     XmlListModel { id: platformmodel
         //source: "http://app:secret@127.0.0.1:2812/_status?format=xml"
         source: xmlurl
         query: '/monit/platform'
         XmlRole { name: "name"; query: "name/string()" }
         XmlRole { name: "release"; query: "release/string()" }
-        XmlRole { name: "version"; query: "version/string()" }
+        //XmlRole { name: "version"; query: "version/string()" }
         XmlRole { name: "machine"; query: "machine/string()" }
         XmlRole { name: "cpu"; query: "cpu/number()" }
         XmlRole { name: "memory"; query: "memory/number()" }
@@ -164,49 +162,39 @@ ApplicationWindow {
     }
 
     /*
-     * Dbus listener for openUrl/openApp etc
+     * Dbus interface to systemd unit
     */
-    /*
-    // pointless assignment for debugging with qmlscene, which calls itself "QtQmlViewer":
-    readonly property string busname: (Qt.application.name === "QtQmlViewer") ? "SailVP" : Qt.application.name
-    DBusAdaptor { id: listener
-        bus: DBus.SessionBus
-        service: "org.nephros.sailfish." + busname
-        iface:   "org.nephros.sailfish." + busname
-        path:    "/org/nephros/sailfish/" + busname
-        xml:  '<interface name="' + iface + '">\n'
-            + '<method name="open" />\n'
-            + '<method name="openPage">\n'
-            + '  <arg name="page" type="s" direction="in">\n'
-            //+ '    <doc:doc><doc:summary>Name of the page to open</doc:summary></doc:doc>\n'
-            + '  </arg>\n'
-            + '</method>\n'
-            + '<method name="openUrl">\n'
-            + '  <arg name="url" type="s" direction="in">\n'
-            //+ '    <doc:doc><doc:summary>URL of the page to open</doc:summary></doc:doc>\n'
-            + '  </arg>\n'
-            + '</method>\n'
-            + '<method name="trigger" />\n'
-            //+ '<method name="login" />\n'
-            //+ '<method name="logout" />\n'
-            + '<property name="ready" type="b" access="read" />\n'
-            + '<property name="unread" type="ai" access="read" />\n'
-            + '</interface>\n'
+    property bool serviceRunning: dbus.activeState === "active"
+    DBusInterface {
+        id: dbus
+        bus: DBus.SystemBus
+        service: "org.freedesktop.systemd1"
+        path: "/org/freedesktop/systemd1/unit/monit_2eservice"
+        iface: "org.freedesktop.systemd1.Unit"
 
-        property bool ready: (!powerSaveMode.active && APIItem.loggedin) ? true : false
-        property var unread: [ APIItem.notificationCount, APIItem.chatCount, APIItem.newEventCount ]
-        function login()  { app.warn("DBus login() called, not implemented.") }
-        function logout() { app.warn("DBus logout() called, not implemented.") }
-        function open() {
-            console.info("App opened via DBus call.")
-            __silica_applicationwindow_instance.activate()
+        propertiesEnabled: true
+
+        property string activeState
+        property string subState
+        property string unitFileState
+
+        function start(u) {
+            //console.debug("dbus start unit", u );
+            call('Start',
+                ["replace",],
+                function(result) { console.debug("Job:", JSON.stringify(result)); },
+                function(result) { console.warn("Start %1".arg(u), result) }
+            );
         }
-
-        Component.onCompleted: console.debug(qsTr("DBus service %1 ready").arg(service))
+        function stop(u) {
+            //console.debug("dbus stop unit", u );
+            call('Stop',
+                [ "replace",],
+                function(result) { console.debug("Job:", JSON.stringify(result)); },
+                function(result) { console.warn("Stop %1".arg(u), result) }
+            );
         }
-     */
-
-
+    }
 
     initialPage: Component { MainPage{} }
     //cover: CoverPage{}

@@ -25,12 +25,12 @@ Page { id: page
             add:      Transition { FadeAnimation { duration: 1200 } }
             move:     Transition { FadeAnimation { duration: 1200 } }
             populate: Transition { FadeAnimation { duration: 1200 } }
-            PageHeader { id: head ; title: qsTr("Page Header %1").arg(servicemodel.count) }
+            PageHeader { id: head ; title: qsTr("Monit Service %1").arg(dbus.activeState) }
             SectionHeader { text: qsTr("System") }
             Grid { id: platform
                 width: parent.width
                 columns: 2
-                rows:    4
+                rows:    3
                 flow: Grid.TopToBottom
                 Repeater {
                     model: platformdata ? Object.keys(platformdata) : null
@@ -86,9 +86,14 @@ Page { id: page
                 }
             }
         }
+        ViewPlaceholder {
+            enabled: (dbus.activeState !== "active")
+            text: qsTr("Monit is inactive.")
+            hintText: qsTr("Pull down to go to Settings")
+        }
         PullDownMenu { id: pdp
             MenuItem { text: qsTr("About"); onClicked: { pageStack.push(Qt.resolvedUrl("AboutPage.qml")) } }
-            MenuItem { enabled: false; text: qsTr("Settings"); onClicked: { pageStack.push(Qt.resolvedUrl("SettingsPage.qml")) } }
+            MenuItem { text: qsTr("Settings"); onClicked: { pageStack.push(Qt.resolvedUrl("SettingsPage.qml")) } }
             MenuItem { text: qsTr("Open Browser"); onClicked: { Qt.openUrlExternally(moniturl) } }
             MenuItem { text: qsTr("Refresh"); onClicked: { servicemodel.reload() } }
         }

@@ -103,6 +103,14 @@ Links:
 %endif
 
 
+%package -n harbour-monit
+Summary:    Sailfish GUI for %{name}
+Group:      Qt/Qt
+Requires:   %{name} = %{version}-%{release}
+
+%description -n harbour-monit
+%{summary}.
+
 %prep
 %setup -q -n %{name}-%{version}/monit
 
@@ -202,3 +210,8 @@ desktop-file-install --delete-original       \
 %config %attr(750,root,root) %{_sysconfdir}/%{name}.d/scripts/*
 # >> files contrib
 # << files contrib
+
+%files -n harbour-monit
+%defattr(-,root,root,-)
+# >> files harbour-monit
+# << files harbour-monit

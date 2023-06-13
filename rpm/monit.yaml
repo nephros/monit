@@ -131,3 +131,8 @@ SubPackages:
          - '%config %{_sysconfdir}/%{name}.d/available/*.conf'
          - '%config %attr(750,root,root) %{_sysconfdir}/%{name}.d/scripts/*'
 
+
+    - Name:  harbour-monit
+      AsWholeName: true
+      Summary: Sailfish GUI for %{name}
+      Group: Qt/Qt

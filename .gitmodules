@@ -1,3 +1,6 @@
 [submodule "monit"]
 	path = monit
 	url = https://bitbucket.org/tildeslash/monit/
+[submodule "qml/external/opal-about"]
+	path = qml/external/opal-about
+	url = https://github.com/Pretty-SFOS/opal-about
