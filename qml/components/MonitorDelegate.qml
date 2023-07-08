@@ -7,23 +7,48 @@ import QtQuick 2.6
 import Sailfish.Silica 1.0
 
 ListItem {
-    states: [
-        State { name: "proc" },
-        State { name: "prog" },
-        State { name: "net" }
-    ]
+
     width: ListView.view.width
     contentHeight: content.height
-    Switch { id: sw
-        checked: (statuses[monitor] === 'ok')
-        busy:    (statuses[monitor] === 'initializing')
+
+    states: [
+        State { name: "process"
+            PropertyChanges { target: details; sourceComponent: procdetails}
+        },
+        State { name: "program"
+            PropertyChanges { target: details; sourceComponent: progdetails}
+        },
+        State { name: "net"
+            PropertyChanges { target: details; sourceComponent: netdetails}
+            PropertyChanges { target: statesw; checked: (netlink === 1)}
+        }
+    ]
+    state: types[model.type]
+
+    Switch { id: monsw
+        checked: (monitormodes[monitor] === 'monitored')
+        palette.primaryColor: Theme.highlightColor
+        automaticCheck: false
     }
     Column { id: content
-        width: parent.width - sw.width
-        anchors.left: sw.right
-        anchors.top: sw.top
-        Label { text: name ;              color: Theme.highlightColor}
-        Label { text: types[model.type] ; color: Theme.secondaryColor; font.pixelSize: Theme.fontSizeSmall}
+        width: parent.width - monsw.width
+        anchors.left: monsw.right
+        TextSwitch { id: statesw
+            automaticCheck: false
+            //checked: (statuses[monitor] === 'ok')
+            checked: monsw.checked
+            busy:    (statuses[monitor] === 'initializing')
+            //palette.primaryColor :{
+            //    checked ? Theme.highlightColor : "red"
+            //}
+            palette.backgroundGlowColor :{
+                checked ? "darkgreen" : "red"
+            }
+            text: name
+            description: types[model.type] + ', ' + monitormodes[monitor]
+        }
+        //Label { text: name ;              color: Theme.highlightColor}
+        //Label { text: types[model.type] ; color: Theme.secondaryColor; font.pixelSize: Theme.fontSizeSmall}
         Loader { id: details; width: parent.width }
         Component { id: procdetails; Row {
             DetailItem { width: parent.width/5; forceValueBelow: true; label: "Up"; value: procup }
