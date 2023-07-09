@@ -74,7 +74,7 @@ Page { id: page
             MenuItem { text: qsTr("About"); onClicked: { pageStack.push(Qt.resolvedUrl("AboutPage.qml")) } }
             MenuItem { text: qsTr("Settings"); onClicked: { pageStack.push(Qt.resolvedUrl("SettingsPage.qml")) } }
             MenuItem { text: qsTr("Open Browser"); onClicked: { Qt.openUrlExternally(moniturl) } }
-            MenuItem { text: qsTr("Refresh"); onClicked: { app.getData() } }
+            MenuItem { text: qsTr("Refresh"); onClicked: { servicemodel.reload()} }
         }
         VerticalScrollDecorator {}
     }

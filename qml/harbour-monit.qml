@@ -27,7 +27,6 @@ import Nemo.Configuration 1.0
 import Nemo.DBus 2.0
 import "pages"
 import "cover"
-import "components/xhr"
 
 ApplicationWindow {
     id: app
@@ -84,18 +83,6 @@ ApplicationWindow {
         "not monitored"
     ]
 
-    /*
-    XHRItem { id: x ; property bool busy: false }
-    function getData() {
-        x.xhr(xmlurl, "GET", false, function(ret) {
-            //console.debug("got:", ret)
-           servicemodel.xml = ret;
-            //processmodel.xml = ret;
-            //programmodel.xml = ret;
-            //netmodel.xml = ret;
-        })
-    }
-    */
     // FIXME: several.requests for the same data...
     property var platformdata
     XmlListModel { id: platformmodel
@@ -123,13 +110,16 @@ ApplicationWindow {
         source: xmlurl
         onStatusChanged: {
             if (status === XmlListModel.Ready) {
+                        processmodel.clear();
+                        programmodel.clear();
+                        netmodel.clear();
                 for (var i = 0; i<count; ++i) {
                     var e = get(i);
                     switch (types[e.type]) {
                         case "process": processmodel.append(e); break;
                         case "program": programmodel.append(e); break;
                         case "net": netmodel.append(e); break;
-                        default: console.warn("unknown type:", e.type); break;
+                        default: console.warn("unhandled type:", e.type, types[e.type]); break;
                     }
                 }
             }
