@@ -35,7 +35,9 @@ ApplicationWindow {
 
     //property alias powersaving: powerSaveMode.active
 
+    // subpages, in reverse order:
     property var pages: [
+         { objectName: "hostpage", model: hostmodel,     title: qsTr("Host") },
          { objectName: "netpage", model: netmodel,     title: qsTr("Net") },
          { objectName: "progpage", model: programmodel, title: qsTr("Programs") },
          { objectName: "procpage", model: processmodel, title: qsTr("Processes") },
@@ -113,12 +115,14 @@ ApplicationWindow {
                         processmodel.clear();
                         programmodel.clear();
                         netmodel.clear();
+                        hostmodel.clear();
                 for (var i = 0; i<count; ++i) {
                     var e = get(i);
                     switch (types[e.type]) {
                         case "process": processmodel.append(e); break;
                         case "program": programmodel.append(e); break;
                         case "net": netmodel.append(e); break;
+                        case "host": hostmodel.append(e); break;
                         default: console.warn("unhandled type:", e.type, types[e.type]); break;
                     }
                 }
@@ -146,10 +150,17 @@ ApplicationWindow {
         XmlRole { name: "netlink"; query: "link/state/number()" }
         XmlRole { name: "netup"; query: "upload/bytes/total/number()" }
         XmlRole { name: "netdown"; query: "download/bytes/total/number()" }
+        // host
+        XmlRole { name: "hostname"; query: "port/hostname/string()" }
+        XmlRole { name: "hostport"; query: "port/portnumber/number()" }
+        XmlRole { name: "hostreq"; query: " port/request/string()" }
+        XmlRole { name: "hostproto"; query: "port/protocol/string()" }
+        XmlRole { name: "hostnetproto"; query: "port/type/string()" }
      }
     ListModel { id: processmodel }
     ListModel { id: programmodel }
     ListModel { id: netmodel }
+    ListModel { id: hostmodel }
 
     /* detect closing of app*/
     signal willQuit()
