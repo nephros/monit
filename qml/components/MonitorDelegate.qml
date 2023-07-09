@@ -24,6 +24,7 @@ ListItem {
         }
     ]
     state: types[model.type]
+    onStateChanged: console.debug("State changed to", state, "for", name, "of type", model.type + " (" + types[model.type] + ")")
 
     Switch { id: monsw
         checked: (monitormodes[monitor] === 'monitored')

@@ -6,7 +6,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import QtQuick 2.6
-import QtQuick.XmlListModel 2.0
+//import QtQuick.XmlListModel 2.0
 import Sailfish.Silica 1.0
 import "../components"
 
@@ -22,7 +22,7 @@ Page { id: page
     }
     property string title: qsTr("Monit Service Manager %1").arg(dbus.activeState)
     property string subtitle: qsTr("Target")
-    property XmlListModel model
+    property ListModel model
     property Component delegate: MonitorDelegate{}
 
     Component.onCompleted: console.debug("Loaded page", objectName)
@@ -43,6 +43,7 @@ Page { id: page
             populate: Transition { FadeAnimation { duration: 1200 } }
             PageHeader { id: head ; title: page.title }
             Grid { id: platform
+                visible: (!!!page.objectName)
                 width: parent.width
                 columns: 2
                 rows:    3
@@ -55,8 +56,7 @@ Page { id: page
                     }
                 }
             }
-
-            SectionHeader { text: page.subtitle}
+            //SectionHeader { text: page.subtitle}
             SilicaListView {
                 height: page.height - (head.height + platform.height)
                 width: parent.width
@@ -74,7 +74,7 @@ Page { id: page
             MenuItem { text: qsTr("About"); onClicked: { pageStack.push(Qt.resolvedUrl("AboutPage.qml")) } }
             MenuItem { text: qsTr("Settings"); onClicked: { pageStack.push(Qt.resolvedUrl("SettingsPage.qml")) } }
             MenuItem { text: qsTr("Open Browser"); onClicked: { Qt.openUrlExternally(moniturl) } }
-            MenuItem { text: qsTr("Refresh"); onClicked: { servicemodel.reload() } }
+            MenuItem { text: qsTr("Refresh"); onClicked: { app.getData() } }
         }
         VerticalScrollDecorator {}
     }

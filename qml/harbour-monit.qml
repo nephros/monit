@@ -84,16 +84,18 @@ ApplicationWindow {
         "not monitored"
     ]
 
+    /*
     XHRItem { id: x ; property bool busy: false }
     function getData() {
         x.xhr(xmlurl, "GET", false, function(ret) {
             //console.debug("got:", ret)
-            //servicemodel.xml = ret;
-            processmodel.xml = ret;
-            programmodel.xml = ret;
-            netmodel.xml = ret;
+           servicemodel.xml = ret;
+            //processmodel.xml = ret;
+            //programmodel.xml = ret;
+            //netmodel.xml = ret;
         })
     }
+    */
     // FIXME: several.requests for the same data...
     property var platformdata
     XmlListModel { id: platformmodel
@@ -108,99 +110,56 @@ ApplicationWindow {
         XmlRole { name: "memory"; query: "memory/number()" }
         XmlRole { name: "swap"; query: "swap/number()" }
         onStatusChanged: {
-            console.debug("status:", status, errorString(), count)
+            //console.debug("status:", status, errorString(), count)
             if (status === XmlListModel.Ready) {
                 platformdata = platformmodel.get(0);
             }
         }
     }
     XmlListModel { id: monitmodel
-        //source: "http://app:secret@127.0.0.1:2812/_status?format=xml"
-        //source: xmlurl
         query: '/monit/server'
-        //onStatusChanged: console.debug("status:", status, errorString(), count)
     }
-    /*
     XmlListModel { id: servicemodel
-        //source: "http://app:secret@127.0.0.1:2812/_status?format=xml"
-        //source: xmlurl
+        source: xmlurl
+        onStatusChanged: {
+            if (status === XmlListModel.Ready) {
+                for (var i = 0; i<count; ++i) {
+                    var e = get(i);
+                    switch (types[e.type]) {
+                        case "process": processmodel.append(e); break;
+                        case "program": programmodel.append(e); break;
+                        case "net": netmodel.append(e); break;
+                        default: console.warn("unknown type:", e.type); break;
+                    }
+                }
+            }
+        }
         query: '/monit/service'
+        //common/service
         XmlRole { name: "type"; query: "@type/number()" }
         XmlRole { name: "name"; query: "name/string()" }
         XmlRole { name: "status"; query: "status/number()"; isKey: true}
         XmlRole { name: "monitor"; query: "monitor/number()"; isKey: true}
         XmlRole { name: "monitormode"; query: "monitormode/number()"; isKey: true}
         XmlRole { name: "collected"; query: "collected_sec/number()"; isKey: true }
-
         //process
         XmlRole { name: "procup"; query: "uptime/number()" }
         XmlRole { name: "proccpu"; query: "cpu/percenttotal/number()" }
         XmlRole { name: "procmem"; query: "memory/percenttotal/number()" }
         XmlRole { name: "procread"; query: "read/bytes/total/number()" }
         XmlRole { name: "procwrite"; query: "write/bytes/total/number()" }
-
         // program
         XmlRole { name: "progstatus"; query: "program/status/number()" }
         XmlRole { name: "proglast"; query: "program/started/number()" }
         XmlRole { name: "progout"; query: "program/output/string()" }
-
         // net
         XmlRole { name: "netlink"; query: "link/state/number()" }
         XmlRole { name: "netup"; query: "upload/bytes/total/number()" }
         XmlRole { name: "netdown"; query: "download/bytes/total/number()" }
-
-        //onStatusChanged: console.debug("status:", status, errorString(), count)
-    }
-    */
-    XmlListModel { id: processmodel
-        //source: "http://app:secret@127.0.0.1:2812/_status?format=xml"
-        query: '/monit/service'
-        XmlRole { name: "type"; query: "@type/number()" }
-        XmlRole { name: "name"; query: "name/string()" }
-        XmlRole { name: "status"; query: "status/number()"; isKey: true}
-        XmlRole { name: "monitor"; query: "monitor/number()"; isKey: true}
-        XmlRole { name: "monitormode"; query: "monitormode/number()"; isKey: true}
-        XmlRole { name: "collected"; query: "collected_sec/number()"; isKey: true }
-
-        //process
-        XmlRole { name: "procup"; query: "uptime/number()" }
-        XmlRole { name: "proccpu"; query: "cpu/percenttotal/number()" }
-        XmlRole { name: "procmem"; query: "memory/percenttotal/number()" }
-        XmlRole { name: "procread"; query: "read/bytes/total/number()" }
-        XmlRole { name: "procwrite"; query: "write/bytes/total/number()" }
-        //onStatusChanged: console.debug("status:", status, errorString(), count)
-    }
-    XmlListModel { id: programmodel
-        //source: "http://app:secret@127.0.0.1:2812/_status?format=xml"
-        query: '/monit/service'
-        XmlRole { name: "type"; query: "@type/number()" }
-        XmlRole { name: "name"; query: "name/string()" }
-        XmlRole { name: "status"; query: "status/number()"; isKey: true}
-        XmlRole { name: "monitor"; query: "monitor/number()"; isKey: true}
-        XmlRole { name: "monitormode"; query: "monitormode/number()"; isKey: true}
-        XmlRole { name: "collected"; query: "collected_sec/number()"; isKey: true }
-        // program
-        XmlRole { name: "progstatus"; query: "program/status/number()" }
-        XmlRole { name: "proglast"; query: "program/started/number()" }
-        XmlRole { name: "progout"; query: "program/output/string()" }
-        //onStatusChanged: console.debug("status:", status, errorString(), count)
-    }
-    XmlListModel { id: netmodel
-        //source: "http://app:secret@127.0.0.1:2812/_status?format=xml"
-        query: '/monit/service'
-        XmlRole { name: "type"; query: "@type/number()" }
-        XmlRole { name: "name"; query: "name/string()" }
-        XmlRole { name: "status"; query: "status/number()"; isKey: true}
-        XmlRole { name: "monitor"; query: "monitor/number()"; isKey: true}
-        XmlRole { name: "monitormode"; query: "monitormode/number()"; isKey: true}
-        XmlRole { name: "collected"; query: "collected_sec/number()"; isKey: true }
-        // net
-        XmlRole { name: "netlink"; query: "link/state/number()" }
-        XmlRole { name: "netup"; query: "upload/bytes/total/number()" }
-        XmlRole { name: "netdown"; query: "download/bytes/total/number()" }
-
-        //onStatusChanged: console.debug("status:", status, errorString(), count)
-    }
+     }
+    ListModel { id: processmodel }
+    ListModel { id: programmodel }
+    ListModel { id: netmodel }
 
     /* detect closing of app*/
     signal willQuit()
@@ -225,7 +184,6 @@ ApplicationWindow {
         Qt.application.version = "unreleased";
         console.info("Intialized", Qt.application.name, "version", Qt.application.version, "by", Qt.application.organization );
         console.debug("Parameters: " + Qt.application.arguments.join(" "))
-        getData();
     }
 
     // application settings:
