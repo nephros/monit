@@ -21,6 +21,9 @@ ListItem {
         State { name: "net"
             PropertyChanges { target: details; sourceComponent: netdetails}
             PropertyChanges { target: statesw; checked: (netlink === 1)}
+        },
+        State { name: "host"
+            PropertyChanges { target: details; sourceComponent: hostdetails}
         }
     ]
     state: types[model.type]
@@ -67,6 +70,12 @@ ListItem {
             DetailItem { width: parent.width/2; forceValueBelow: true; label: "Link"; value: netlink }
             DetailItem { width: parent.width/2; forceValueBelow: true; label: "Up"; value: Math.floor(netup/1024)+"kB" }
             DetailItem { width: parent.width/2; forceValueBelow: true; label: "Down"; value: Math.floor(netdown/1024)+"kB" }
+        }}
+        Component { id: hostdetails; Row {
+            DetailItem { width: parent.width*2/5; forceValueBelow: true; label: "Host"; value: hostname+":"+hostport}
+            DetailItem { width: parent.width*1/5; forceValueBelow: true; label: ""; value: hostreq}
+            DetailItem { width: parent.width*1/5; forceValueBelow: true; label: ""; value: hostproto}
+            DetailItem { width: parent.width*1/5; forceValueBelow: true; label: ""; value: hostnetproto}
         }}
     }
 }
