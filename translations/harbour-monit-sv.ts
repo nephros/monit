@@ -5,36 +5,32 @@
     <name>AboutPage</name>
     <message>
         <source>About</source>
-        <translation>Om</translation>
+        <translation type="vanished">Om</translation>
     </message>
     <message>
         <source>Version:</source>
-        <translation>Version:</translation>
+        <translation type="vanished">Version:</translation>
     </message>
     <message>
         <source>Copyright:</source>
-        <translation>Copyright:</translation>
+        <translation type="vanished">Copyright:</translation>
     </message>
     <message>
         <source>License:</source>
-        <translation>Licens:</translation>
+        <translation type="vanished">Licens:</translation>
     </message>
     <message>
         <source>Source Code:</source>
-        <translation>Källkod:</translation>
+        <translation type="vanished">Källkod:</translation>
     </message>
     <message>
         <source>Credits</source>
-        <translation>Erkännanden</translation>
+        <translation type="vanished">Erkännanden</translation>
     </message>
     <message>
         <source>Translation: %1</source>
         <comment>%1 is the native language name</comment>
-        <translation>Översättningar: %1</translation>
-    </message>
-    <message>
-        <source>What&apos;s %1?</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Översättningar: %1</translation>
     </message>
 </context>
 <context>
@@ -116,34 +112,305 @@
     </message>
 </context>
 <context>
+    <name>LicenseListPart</name>
+    <message>
+        <source>License text</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>MainPage</name>
     <message>
         <source>About</source>
-        <translation>Om</translation>
+        <translation type="vanished">Om</translation>
     </message>
     <message>
         <source>Settings</source>
-        <translation>Inställningar</translation>
-    </message>
-    <message>
-        <source>Page Header %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>System</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Targets</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Open Browser</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Inställningar</translation>
     </message>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished">Uppdatera</translation>
+        <translation type="obsolete">Uppdatera</translation>
+    </message>
+</context>
+<context>
+    <name>Opal.About</name>
+    <message>
+        <source>About</source>
+        <translation type="unfinished">Om</translation>
+    </message>
+    <message>
+        <source>Version %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Development</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>show contributors</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Homepage</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Changelog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Translations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Source Code</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Donations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>License</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <source>show license(s)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>News</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Changes since version %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>show details</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Contributors</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Acknowledgements</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Thank you!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Details</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>External Link</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open in browser</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copied to clipboard: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copy to clipboard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please refer to &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Download license texts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <source>License(s)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>Note: please check the source code for most accurate information.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Opal.About.Common</name>
+    <message>
+        <source>If you want to support my work, you can buy me a cup of coffee.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You can support this project by contributing, or by donating using any of these services.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Your contributions to translations or code would be most welcome.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Author</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <source>Author(s)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>Maintainer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <source>Maintainer(s)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>Programming</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Translations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Icon Design</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Third-party libraries</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Data</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Data License</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <source>Data License(s)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>Terms of Use</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Swedish</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Polish</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>German</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>French</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Chinese</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>English</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Italian</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Finnish</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Norwegian</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Latvian</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Estonian</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Czech</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Greek</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Spanish</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hungarian</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Indonesian</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Russian</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Dutch</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Slovak</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Turkish</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ServicePage</name>
+    <message>
+        <source>About</source>
+        <translation type="obsolete">Om</translation>
+    </message>
+    <message>
+        <source>Settings</source>
+        <translation type="obsolete">Inställningar</translation>
+    </message>
+    <message>
+        <source>Refresh</source>
+        <translation type="obsolete">Uppdatera</translation>
     </message>
 </context>
 <context>
@@ -155,11 +422,11 @@
     </message>
     <message>
         <source>Application</source>
-        <translation>Program</translation>
+        <translation type="vanished">Program</translation>
     </message>
     <message>
         <source>Show Notifications</source>
-        <translation>Visa aviseringar</translation>
+        <translation type="vanished">Visa aviseringar</translation>
     </message>
     <message>
         <source>List Cleared.</source>
@@ -167,39 +434,66 @@
     </message>
     <message>
         <source>Sticky Notifications</source>
-        <translation>Fasta aviseringar</translation>
+        <translation type="vanished">Fasta aviseringar</translation>
     </message>
     <message>
         <source>Advanced:</source>
-        <translation>Avancerat:</translation>
+        <translation type="vanished">Avancerat:</translation>
     </message>
     <message>
         <source>min</source>
-        <translation>min</translation>
+        <translation type="vanished">min</translation>
     </message>
     <message>
-        <source>If enabled, the app will send notifications.&lt;br /&gt; Use the slider below to specify how often to check.</source>
+        <source>Service</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Check every</source>
+        <source>Monit Service</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>If enabled, the app will update a single notification (as opposed to sending a new one each time).</source>
+        <source>The service is %1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Hide Foo</source>
+        <source>Start at boot</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SvcPageBase</name>
+    <message>
+        <source>Monit Service Manager %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>If enabled, the app will ...</source>
+        <source>Target</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Show bar</source>
+        <source>Monit is inactive.</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pull down to go to Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>About</source>
+        <translation type="unfinished">Om</translation>
+    </message>
+    <message>
+        <source>Settings</source>
+        <translation type="unfinished">Inställningar</translation>
+    </message>
+    <message>
+        <source>Open Browser</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Refresh</source>
+        <translation type="unfinished">Uppdatera</translation>
     </message>
 </context>
 <context>
@@ -323,6 +617,92 @@
     <message>
         <source>Share %1…</source>
         <translation type="vanished">Dela %1…</translation>
+    </message>
+</context>
+<context>
+    <name>gallery</name>
+    <message>
+        <source>This is a short description of the app. It can use styled and rich text or &lt;a href=&apos;https://example.org&apos;&gt;links&lt;/a&gt;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>the app&apos;s maintainer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>another important person</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>additional name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Forum</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Data</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lorem ipsum dolor sit amet et cetera ad libitum plurum sid alum.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Data License</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Extra info</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolorus.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Development</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Programming</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Icon Design</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Translations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>English</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>German</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open another page</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>harbour-monit</name>
+    <message>
+        <source>Net</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Programs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Processes</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

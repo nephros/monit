@@ -6,12 +6,27 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import QtQuick 2.6
+import QtQuick.XmlListModel 2.0
 import Sailfish.Silica 1.0
 import "../components"
 
 Page { id: page
 
     allowedOrientations: Orientation.All
+    // populate the stack:
+    onStatusChanged: {
+        if ( status === PageStatus.Active && pageStack.nextPage() === null ) {
+            var next = pages.pop()
+            if (!!next) pageStack.pushAttached(Qt.resolvedUrl("SvcPageBase.qml"), next)
+        }
+    }
+    property string title: qsTr("Monit Service Manager %1").arg(dbus.activeState)
+    property string subtitle: qsTr("Target")
+    property XmlListModel model
+    property Component delegate: MonitorDelegate{}
+
+    Component.onCompleted: console.debug("Loaded page", objectName)
+
     SilicaFlickable {
         id: flick
         anchors.fill: parent
@@ -20,13 +35,13 @@ Page { id: page
             id: col
             width: parent.width - Theme.horizontalPageMargin
             anchors.horizontalCenter: parent.horizontalCenter
-            spacing: Theme.paddingLarge
+            //spacing: Theme.paddingLarge
+            spacing: Theme.paddingSmall
             bottomPadding: Theme.itemSizeLarge
             add:      Transition { FadeAnimation { duration: 1200 } }
             move:     Transition { FadeAnimation { duration: 1200 } }
             populate: Transition { FadeAnimation { duration: 1200 } }
-            PageHeader { id: head ; title: qsTr("Monit Service Manager %1").arg(dbus.activeState) }
-            SectionHeader { text: qsTr("System") }
+            PageHeader { id: head ; title: page.title }
             Grid { id: platform
                 width: parent.width
                 columns: 2
@@ -41,13 +56,13 @@ Page { id: page
                 }
             }
 
-            SectionHeader { text: qsTr("Targets") }
+            SectionHeader { text: page.subtitle}
             SilicaListView {
                 height: page.height - (head.height + platform.height)
                 width: parent.width
                 spacing: Theme.paddingMedium
-                model: servicemodel
-                delegate: MonitorDelegate{}
+                model: page.model
+                delegate: page.delegate
             }
         }
         ViewPlaceholder {

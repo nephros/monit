@@ -36,6 +36,12 @@ ApplicationWindow {
 
     //property alias powersaving: powerSaveMode.active
 
+    property var pages: [
+         { objectName: "netpage", model: netmodel,     title: qsTr("Net") },
+         { objectName: "progpage", model: programmodel, title: qsTr("Programs") },
+         { objectName: "procpage", model: processmodel, title: qsTr("Processes") },
+    ]
+
     readonly property var monit: {
         "proto": "http://",
         "host": "127.0.0.1",
@@ -82,7 +88,7 @@ ApplicationWindow {
     function getData() {
         x.xhr(xmlurl, "GET", false, function(ret) {
             //console.debug("got:", ret)
-            servicemodel.xml = ret;
+            //servicemodel.xml = ret;
             processmodel.xml = ret;
             programmodel.xml = ret;
             netmodel.xml = ret;
@@ -110,10 +116,11 @@ ApplicationWindow {
     }
     XmlListModel { id: monitmodel
         //source: "http://app:secret@127.0.0.1:2812/_status?format=xml"
-        source: xmlurl
+        //source: xmlurl
         query: '/monit/server'
         //onStatusChanged: console.debug("status:", status, errorString(), count)
     }
+    /*
     XmlListModel { id: servicemodel
         //source: "http://app:secret@127.0.0.1:2812/_status?format=xml"
         //source: xmlurl
@@ -144,6 +151,7 @@ ApplicationWindow {
 
         //onStatusChanged: console.debug("status:", status, errorString(), count)
     }
+    */
     XmlListModel { id: processmodel
         //source: "http://app:secret@127.0.0.1:2812/_status?format=xml"
         query: '/monit/service'
@@ -191,7 +199,7 @@ ApplicationWindow {
         XmlRole { name: "netup"; query: "upload/bytes/total/number()" }
         XmlRole { name: "netdown"; query: "download/bytes/total/number()" }
 
-        onStatusChanged: console.debug("status:", status, errorString(), count)
+        //onStatusChanged: console.debug("status:", status, errorString(), count)
     }
 
     /* detect closing of app*/
@@ -268,7 +276,15 @@ ApplicationWindow {
         }
     }
 
-    initialPage: Component { MainPage{} }
+    initialPage: Component {
+        SvcPageBase {
+            //title: qsTr("Platform")
+            //subtitle: qsTr("Services")
+            //model: servicemodel
+        }
+    }
+
+// vi
     //cover: CoverPage{}
 
     //PageBusyIndicator { running: app.status === Component.Loading }
