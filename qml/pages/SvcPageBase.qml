@@ -42,8 +42,22 @@ Page { id: page
             move:     Transition { FadeAnimation { duration: 1200 } }
             populate: Transition { FadeAnimation { duration: 1200 } }
             PageHeader { id: head ; title: page.title }
+            Grid { id: monit
+                visible: (!!!page.objectName) // the "first" page has no object name
+                width: parent.width
+                columns: 2
+                rows:    3
+                flow: Grid.TopToBottom
+                Repeater {
+                    model: monitdata ? Object.keys(monitdata) : null
+                    delegate: DetailItem {
+                        width: platform.width/2
+                        label: modelData[0].toUpperCase() + modelData.substr(1); value: platformdata[modelData]
+                    }
+                }
+            }
             Grid { id: platform
-                visible: (!!!page.objectName)
+                visible: (!!!page.objectName) // the "first" page has no object name
                 width: parent.width
                 columns: 2
                 rows:    3
@@ -57,12 +71,18 @@ Page { id: page
                 }
             }
             //SectionHeader { text: page.subtitle}
-            SilicaListView {
+            SilicaListView { id: svcview
                 height: page.height - (head.height + platform.height)
-                width: parent.width
+                width: isLandscape ? parent.width : parent.width*2
                 spacing: Theme.paddingMedium
                 model: page.model
                 delegate: page.delegate
+            }
+            ColumnView {
+                visible: (!!!page.objectName)
+                model: servicemodel
+                delegate: MonitorDelegate{}
+                itemHeight: Theme.itemSizeMedium
             }
         }
         ViewPlaceholder {

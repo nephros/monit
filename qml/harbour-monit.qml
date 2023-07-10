@@ -37,8 +37,8 @@ ApplicationWindow {
 
     // subpages, in reverse order:
     property var pages: [
-         { objectName: "hostpage", model: hostmodel,     title: qsTr("Host") },
-         { objectName: "netpage", model: netmodel,     title: qsTr("Net") },
+         { objectName: "hostpage", model: hostmodel,    title: qsTr("Host") },
+         { objectName: "netpage" , model: netmodel,     title: qsTr("Net") },
          { objectName: "progpage", model: programmodel, title: qsTr("Programs") },
          { objectName: "procpage", model: processmodel, title: qsTr("Processes") },
     ]
@@ -87,6 +87,7 @@ ApplicationWindow {
 
     // FIXME: several.requests for the same data...
     property var platformdata
+    property var monitdata
     XmlListModel { id: platformmodel
         //source: "http://app:secret@127.0.0.1:2812/_status?format=xml"
         source: xmlurl
@@ -99,33 +100,57 @@ ApplicationWindow {
         XmlRole { name: "memory"; query: "memory/number()" }
         XmlRole { name: "swap"; query: "swap/number()" }
         onStatusChanged: {
-            //console.debug("status:", status, errorString(), count)
+            // split out the  "platform" data:
             if (status === XmlListModel.Ready) {
+                console.info("Platform model loaded.")
                 platformdata = platformmodel.get(0);
             }
         }
     }
     XmlListModel { id: monitmodel
         query: '/monit/server'
+        source: xmlurl
+        onStatusChanged: {
+            // split out the  "platform" data:
+            if (status === XmlListModel.Ready) {
+                console.info("Monit model loaded.")
+                monitdata = monitmodel.get(0);
+            }
+        }
     }
+    /*
+     * Use the XMLListmodel to "easily" parse the XML.
+     * When this is loaded, split up the contents into a regular ListModel.
+     */
     XmlListModel { id: servicemodel
         source: xmlurl
         onStatusChanged: {
             if (status === XmlListModel.Ready) {
-                        processmodel.clear();
-                        programmodel.clear();
-                        netmodel.clear();
-                        hostmodel.clear();
+                console.info("Services model loaded.")
+                processmodel.clear();
+                programmodel.clear();
+                netmodel.clear();
+                hostmodel.clear();
+                //processmodel.append([ "Up", "Mem", "CPU", "Read", "Write" ]);
+                //programmodel.append( [ "Status", "Updated", "Output" ]);
+                //netmodel.append( [ "Link", "Up", "Down" ]);
+                //hostmodel.append( ["Host", "Req", "Proto", "Inet"]);
                 for (var i = 0; i<count; ++i) {
+                    // use JSON to kill empty properties: FIXME doesn't work
+                    //var e = JSON.parse(JSON.stringify(get(i)));
                     var e = get(i);
                     switch (types[e.type]) {
                         case "process": processmodel.append(e); break;
                         case "program": programmodel.append(e); break;
-                        case "net": netmodel.append(e); break;
-                        case "host": hostmodel.append(e); break;
+                        case "net":     netmodel.append(e); break;
+                        case "host":    hostmodel.append(e); break;
                         default: console.warn("unhandled type:", e.type, types[e.type]); break;
                     }
                 }
+                //console.debug("schema proc:", JSON.stringify(processmodel.get(0),null,2));
+                //console.debug("schema prog:", JSON.stringify(programmodel.get(0),null,2));
+                //console.debug("schema net:",  JSON.stringify(netmodel.get(0),null,2));
+                //console.debug("schema host:", JSON.stringify(hostmodel.get(0),null,2));
             }
         }
         query: '/monit/service'
@@ -156,7 +181,7 @@ ApplicationWindow {
         XmlRole { name: "hostreq"; query: " port/request/string()" }
         XmlRole { name: "hostproto"; query: "port/protocol/string()" }
         XmlRole { name: "hostnetproto"; query: "port/type/string()" }
-     }
+    }
     ListModel { id: processmodel }
     ListModel { id: programmodel }
     ListModel { id: netmodel }

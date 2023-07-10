@@ -6,7 +6,7 @@
 import QtQuick 2.6
 import Sailfish.Silica 1.0
 
-ListItem {
+ListItem { id: root
 
     width: ListView.view.width
     contentHeight: content.height
@@ -20,7 +20,7 @@ ListItem {
         },
         State { name: "net"
             PropertyChanges { target: details; sourceComponent: netdetails}
-            PropertyChanges { target: statesw; checked: (netlink === 1)}
+            PropertyChanges { target: stateindicator; checked: (netlink === 1)}
         },
         State { name: "host"
             PropertyChanges { target: details; sourceComponent: hostdetails}
@@ -29,55 +29,91 @@ ListItem {
     state: types[model.type]
     //onStateChanged: console.debug("State changed to", state, "for", name, "of type", model.type + " (" + types[model.type] + ")")
 
-    Switch { id: monsw
-        checked: (monitormodes[monitor] === 'monitored')
-        palette.primaryColor: Theme.highlightColor
-        automaticCheck: false
+    // Odd/even marking:
+    property color oddColor: "transparent"
+    property color evenColor: Theme.highlightBackgroundColor
+    property bool isOdd: (index %2 != 0)
+    Rectangle { id: oddevenrect
+        anchors.fill: parent
+        //visible: showOddEven
+        radius: Theme.paddingSmall
+        opacity: Theme.opacityFaint
+        color: isOdd ? oddColor : evenColor
+        border.color: "transparent"
+        border.width: radius/2
     }
-    Column { id: content
-        width: parent.width - monsw.width
-        anchors.left: monsw.right
-        TextSwitch { id: statesw
-            automaticCheck: false
+
+    Row { id: indicators
+        //anchors.top: parent.top
+        anchors.left: parent.left
+        anchors.verticalCenter: parent.verticalCenter
+        rightPadding: Theme.paddingSmall
+        Indicator { id: monindicator
+            width: Theme.iconSizeSmall
+            height: width
+            checked: (monitormodes[monitor] === 'monitored')
+            palette.primaryColor: Theme.highlightColor
+        }
+        Indicator { id: stateindicator
+            width: Theme.iconSizeSmall
+            height: width
             //checked: (statuses[monitor] === 'ok')
-            checked: monsw.checked
+            checked: monindicator.checked
             busy:    (statuses[monitor] === 'initializing')
-            //palette.primaryColor :{
-            //    checked ? Theme.highlightColor : "red"
-            //}
             palette.backgroundGlowColor :{
                 checked ? "darkgreen" : "red"
             }
-            text: name
-            description: types[model.type] + ', ' + monitormodes[monitor]
         }
-        //Label { text: name ;              color: Theme.highlightColor}
-        //Label { text: types[model.type] ; color: Theme.secondaryColor; font.pixelSize: Theme.fontSizeSmall}
-        Loader { id: details; width: parent.width }
-        Component { id: procdetails; Row {
-            DetailItem { width: parent.width/5; forceValueBelow: true; label: "Up"; value: procup }
-            DetailItem { width: parent.width/5; forceValueBelow: true; label: "CPU"; value: proccpu+'%' }
-            DetailItem { width: parent.width/5; forceValueBelow: true; label: "Mem"; value: procmem+'%' }
-            DetailItem { width: parent.width/5; forceValueBelow: true; label: "Read"; value: Math.floor(procread/1024)+'kB' }
-            DetailItem { width: parent.width/5; forceValueBelow: true; label: "Write"; value: Math.floor(procwrite/1024)+'kB' }
-        }}
-        Component { id: progdetails; Row {
-            DetailItem { width: parent.width/3; forceValueBelow: true; label: "Output"; value: progout }
-            DetailItem { width: parent.width/3; forceValueBelow: true; label: "Last"; value: Date(proglast).toLocaleString(Locale.ShortFormat) }
-            DetailItem { width: parent.width/3; forceValueBelow: true; label: "Exit"; value: progstatus }
-        }}
-        Component { id: netdetails; Row {
-            DetailItem { width: parent.width/2; forceValueBelow: true; label: "Link"; value: netlink }
-            DetailItem { width: parent.width/2; forceValueBelow: true; label: "Up"; value: Math.floor(netup/1024)+"kB" }
-            DetailItem { width: parent.width/2; forceValueBelow: true; label: "Down"; value: Math.floor(netdown/1024)+"kB" }
-        }}
-        Component { id: hostdetails; Row {
-            DetailItem { width: parent.width*2/5; forceValueBelow: true; label: "Host"; value: hostname+":"+hostport}
-            DetailItem { width: parent.width*1/5; forceValueBelow: true; label: ""; value: hostreq}
-            DetailItem { width: parent.width*1/5; forceValueBelow: true; label: ""; value: hostproto}
-            DetailItem { width: parent.width*1/5; forceValueBelow: true; label: ""; value: hostnetproto}
-        }}
+        Label {
+            // important: fixed width to make the labels blow appear aligned:
+            width: Theme.itemSizeExtraLarge
+            truncationMode: TruncationMode.Fade
+            text: name
+            font.pixelSize: Theme.fontSizeSmall
+        }
     }
+    Row { id: content
+        anchors.top: parent.top
+        anchors.left: indicators.right
+        width: parent.width - (indicators.width)
+        height: details.height
+        Loader { id: details; width: parent.width}
+    }
+        Component { id: procdetails; Grid {
+            columns: 3
+            property int cell: width /  columns
+            MonitorLabel {text: procup }
+            MonitorLabel {text: proccpu+'%' }
+            MonitorLabel {text: procmem+'%' }
+            MonitorLabel {text: "" }
+            MonitorLabel {text: Math.floor(procread/1024)+'kB' }
+            MonitorLabel {text: Math.floor(procwrite/1024)+'kB' }
+
+        }}
+        Component { id: progdetails; Grid {
+            columns: 2
+            property int cell: width /  columns
+            MonitorLabel { text: progout }
+            MonitorLabel { text: Date(proglast).toLocaleString(Locale.ShortFormat) }
+            MonitorLabel { text: "" }
+            MonitorLabel { text: progstatus }
+        }}
+        Component { id: netdetails; Grid {
+            columns: 2
+            property int cell: width /  columns
+            MonitorLabel { text: netlink }
+            MonitorLabel { text: "" }
+            MonitorLabel { text: Math.floor(netup/1024)+"kB" }
+            MonitorLabel { text: Math.floor(netdown/1024)+"kB" }
+        }}
+        Component { id: hostdetails; Grid {
+            columns: 2
+            property int cell: width /  columns
+            MonitorLabel { width: cell; text: hostname+":"+hostport}
+            MonitorLabel { width: cell; text: hostreq}
+            MonitorLabel { width: cell; text: hostproto}
+            MonitorLabel { width: cell; text: hostnetproto}
+        }}
 }
 
 
