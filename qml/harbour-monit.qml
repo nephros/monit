@@ -24,9 +24,11 @@ import QtQuick.XmlListModel 2.0
 import Sailfish.Silica 1.0
 import Nemo.Configuration 1.0
 //import Nemo.Mce 1.0      // power saving mode
-import Nemo.DBus 2.0
+import Nemo.DBus 2.0;
 import "pages"
 import "cover"
+import "components/xhr"
+import "components/models"
 
 ApplicationWindow {
     id: app
@@ -35,10 +37,16 @@ ApplicationWindow {
 
     //property alias powersaving: powerSaveMode.active
 
+    /* **** CONSTANTS ***** */
+
     // subpages, in reverse order:
-    property var pages: [
-         { objectName: "hostpage", model: hostmodel,    title: qsTr("Host") },
-         { objectName: "netpage" , model: netmodel,     title: qsTr("Net") },
+    readonly property var pages: [
+         //{ objectName: "syspage",  model: sysmodel,     title: qsTr("System") },
+         { objectName: "dirpage",  model: dirmodel,     title: qsTr("Directories") },
+         { objectName: "filepage", model: filemodel,    title: qsTr("Files") },
+         { objectName: "fspage",   model: fsmodel,      title: qsTr("Filesystems") },
+         { objectName: "hostpage", model: hostmodel,    title: qsTr("Remote Hosts") },
+         { objectName: "netpage" , model: netmodel,     title: qsTr("Network") },
          { objectName: "progpage", model: programmodel, title: qsTr("Programs") },
          { objectName: "procpage", model: processmodel, title: qsTr("Processes") },
     ]
@@ -85,18 +93,19 @@ ApplicationWindow {
         "not monitored"
     ]
 
-    // FIXME: several.requests for the same data...
+    /* **** VARIABLES ***** */
     property var platformdata
     property var monitdata
     XmlListModel { id: platformmodel
         //source: "http://app:secret@127.0.0.1:2812/_status?format=xml"
-        source: xmlurl
+        //source: xmlurl
+        xml: xmldata
         query: '/monit/platform'
         XmlRole { name: "name"; query: "name/string()" }
         XmlRole { name: "release"; query: "release/string()" }
         //XmlRole { name: "version"; query: "version/string()" }
         XmlRole { name: "machine"; query: "machine/string()" }
-        XmlRole { name: "cpu"; query: "cpu/number()" }
+        XmlRole { name: "cpus"; query: "cpu/number()" }
         XmlRole { name: "memory"; query: "memory/number()" }
         XmlRole { name: "swap"; query: "swap/number()" }
         onStatusChanged: {
@@ -109,7 +118,17 @@ ApplicationWindow {
     }
     XmlListModel { id: monitmodel
         query: '/monit/server'
-        source: xmlurl
+        //source: xmlurl
+        xml: xmldata
+        XmlRole { name: "hostname"; query: "localhostname/string()" }
+        XmlRole { name: "version"; query: "version/string()" }
+        XmlRole { name: "config"; query: "controlfile/string()" }
+        XmlRole { name: "uptime"; query: "uptime/number()" }
+        XmlRole { name: "poll"; query: "poll/number()" }
+        XmlRole { name: "delay"; query: "startdelay/number()" }
+        XmlRole { name: "webserver"; query: "httpd/address/string()" }
+        XmlRole { name: "webport"; query: "httpd/port/string()" }
+        XmlRole { name: "webssl"; query: "httpd/ssl/number()" }
         onStatusChanged: {
             // split out the  "platform" data:
             if (status === XmlListModel.Ready) {
@@ -122,28 +141,32 @@ ApplicationWindow {
      * Use the XMLListmodel to "easily" parse the XML.
      * When this is loaded, split up the contents into a regular ListModel.
      */
+    /*
     XmlListModel { id: servicemodel
         source: xmlurl
         onStatusChanged: {
             if (status === XmlListModel.Ready) {
                 console.info("Services model loaded.")
-                processmodel.clear();
+                //processmodel.clear();
                 programmodel.clear();
                 netmodel.clear();
                 hostmodel.clear();
+                fsmodel.clear();
                 //processmodel.append([ "Up", "Mem", "CPU", "Read", "Write" ]);
                 //programmodel.append( [ "Status", "Updated", "Output" ]);
                 //netmodel.append( [ "Link", "Up", "Down" ]);
                 //hostmodel.append( ["Host", "Req", "Proto", "Inet"]);
+                //fsmodel.append( ["Host", "Req", "Proto", "Inet"]);
                 for (var i = 0; i<count; ++i) {
                     // use JSON to kill empty properties: FIXME doesn't work
                     //var e = JSON.parse(JSON.stringify(get(i)));
                     var e = get(i);
                     switch (types[e.type]) {
-                        case "process": processmodel.append(e); break;
-                        case "program": programmodel.append(e); break;
-                        case "net":     netmodel.append(e); break;
-                        case "host":    hostmodel.append(e); break;
+                        //case "process":     processmodel.append(e); break;
+                        case "program":     programmodel.append(e); break;
+                        case "net":         netmodel.append(e); break;
+                        case "host":        hostmodel.append(e); break;
+                        case "filesystem":  fsmodel.append(e); break;
                         default: console.warn("unhandled type:", e.type, types[e.type]); break;
                     }
                 }
@@ -151,41 +174,130 @@ ApplicationWindow {
                 //console.debug("schema prog:", JSON.stringify(programmodel.get(0),null,2));
                 //console.debug("schema net:",  JSON.stringify(netmodel.get(0),null,2));
                 //console.debug("schema host:", JSON.stringify(hostmodel.get(0),null,2));
+                //console.debug("schema fs:",   JSON.stringify(fsmodel.get(0),null,2));
             }
         }
         query: '/monit/service'
         //common/service
-        XmlRole { name: "type"; query: "@type/number()" }
-        XmlRole { name: "name"; query: "name/string()" }
-        XmlRole { name: "status"; query: "status/number()"; isKey: true}
-        XmlRole { name: "monitor"; query: "monitor/number()"; isKey: true}
+        XmlRole { name: "type";        query: "@type/number()" }
+        XmlRole { name: "name";        query: "name/string()" }
+        XmlRole { name: "status";      query: "status/number()"; isKey: true}
+        XmlRole { name: "monitor";     query: "monitor/number()"; isKey: true}
         XmlRole { name: "monitormode"; query: "monitormode/number()"; isKey: true}
-        XmlRole { name: "collected"; query: "collected_sec/number()"; isKey: true }
+        //XmlRole { name: "collected";   query: "collected_sec/number()"; isKey: true }
+        // shared: these are shared on process, filesystem:
+        XmlRole { name: "read_total";  query: "read/bytes/total/number()" }
+        XmlRole { name: "write_total"; query: "write/bytes/total/number()" }
         //process
-        XmlRole { name: "procup"; query: "uptime/number()" }
-        XmlRole { name: "proccpu"; query: "cpu/percenttotal/number()" }
-        XmlRole { name: "procmem"; query: "memory/percenttotal/number()" }
-        XmlRole { name: "procread"; query: "read/bytes/total/number()" }
-        XmlRole { name: "procwrite"; query: "write/bytes/total/number()" }
+        XmlRole { name: "procup";    query: "uptime/number()" }
+        XmlRole { name: "proccpu";   query: "cpu/percenttotal/number()" }
+        XmlRole { name: "procmem";   query: "memory/percenttotal/number()" }
         // program
         XmlRole { name: "progstatus"; query: "program/status/number()" }
-        XmlRole { name: "proglast"; query: "program/started/number()" }
-        XmlRole { name: "progout"; query: "program/output/string()" }
+        XmlRole { name: "proglast";   query: "program/started/number()" }
+        XmlRole { name: "progout";    query: "program/output/string()" }
         // net
         XmlRole { name: "netlink"; query: "link/state/number()" }
-        XmlRole { name: "netup"; query: "upload/bytes/total/number()" }
+        XmlRole { name: "netup";   query: "upload/bytes/total/number()" }
         XmlRole { name: "netdown"; query: "download/bytes/total/number()" }
         // host
         XmlRole { name: "hostname"; query: "port/hostname/string()" }
         XmlRole { name: "hostport"; query: "port/portnumber/number()" }
-        XmlRole { name: "hostreq"; query: " port/request/string()" }
-        XmlRole { name: "hostproto"; query: "port/protocol/string()" }
+        XmlRole { name: "hostreq";  query: " port/request/string()" }
+        XmlRole { name: "hostproto";    query: "port/protocol/string()" }
+        XmlRole { name: "hostnetproto"; query: "port/type/string()" }
+        // filesystem:
+        XmlRole { name: "fstype";  query: "fstype/string()" }
+        XmlRole { name: "fsflags"; query: "fsflags/string()" }
+        XmlRole { name: "fsmode"; query: "mode/number()" }
+        XmlRole { name: "fsuid"; query: "uid/number()" }
+        XmlRole { name: "fsgid"; query: "gid/number()" }
+        XmlRole { name: "fs_bl_percent";   query: "block/percent/number()" }
+        XmlRole { name: "fs_bl_usage";   query: "block/usage/number()" }
+        XmlRole { name: "fs_bl_total";   query: "block/total/number()" }
+        XmlRole { name: "fs_in_percent";   query: "inode/percent/number()" }
+        XmlRole { name: "fs_in_usage";   query: "inode/usage/number()" }
+        XmlRole { name: "fs_in_total";   query: "inode/total/number()" }
+    }
+    */
+    ServiceModel { id: processmodel
+        objectName: "processes"
+        query: '/monit/service[@type=3]'
+        xml: xmldata
+        // shared: these are shared on process, filesystem:
+        XmlRole { name: "read_total";  query: "read/bytes/total/number()" }
+        XmlRole { name: "write_total"; query: "write/bytes/total/number()" }
+        //process
+        XmlRole { name: "procup";    query: "uptime/number()" }
+        XmlRole { name: "proccpu";   query: "cpu/percenttotal/number()" }
+        XmlRole { name: "procmem";   query: "memory/percenttotal/number()" }
+    }
+    ServiceModel { id: programmodel
+        objectName: "programs"
+        query: '/monit/service[@type=7]'
+        xml: xmldata
+        // program
+        XmlRole { name: "progstatus"; query: "program/status/number()" }
+        XmlRole { name: "proglast";   query: "program/started/number()" }
+        XmlRole { name: "progout";    query: "program/output/string()" }
+    }
+    ServiceModel { id: netmodel
+        objectName: "net"
+        query: '/monit/service[@type=8]'
+        xml: xmldata
+        // net
+        XmlRole { name: "netlink"; query: "link/state/number()" }
+        XmlRole { name: "netup";   query: "upload/bytes/total/number()" }
+        XmlRole { name: "netdown"; query: "download/bytes/total/number()" }
+    }
+    ServiceModel { id: hostmodel
+        objectName: "host"
+        query: '/monit/service[@type=4]'
+        xml: xmldata
+        // host
+        XmlRole { name: "hostname"; query: "port/hostname/string()" }
+        XmlRole { name: "hostport"; query: "port/portnumber/number()" }
+        XmlRole { name: "hostreq";  query: " port/request/string()" }
+        XmlRole { name: "hostproto";    query: "port/protocol/string()" }
         XmlRole { name: "hostnetproto"; query: "port/type/string()" }
     }
-    ListModel { id: processmodel }
-    ListModel { id: programmodel }
-    ListModel { id: netmodel }
-    ListModel { id: hostmodel }
+    ServiceModel { id: fsmodel
+        objectName: "fs"
+        query: '/monit/service[@type=0]'
+        xml: xmldata
+        // shared: these are shared on process, filesystem:
+        XmlRole { name: "read_total";  query: "read/bytes/total/number()" }
+        XmlRole { name: "write_total"; query: "write/bytes/total/number()" }
+        XmlRole { name: "read_now";  query: "read/bytes/count/number()" }
+        XmlRole { name: "write_now"; query: "write/bytes/count/number()" }
+        // filesystem:
+        XmlRole { name: "fstype";  query: "fstype/string()" }
+        XmlRole { name: "fsflags"; query: "fsflags/string()" }
+        XmlRole { name: "fsmode"; query: "mode/number()" }
+        XmlRole { name: "fsuid"; query: "uid/number()" }
+        XmlRole { name: "fsgid"; query: "gid/number()" }
+        XmlRole { name: "fs_bl_percent";   query: "block/percent/number()" }
+        XmlRole { name: "fs_bl_usage";   query: "block/usage/number()" }
+        XmlRole { name: "fs_bl_total";   query: "block/total/number()" }
+        XmlRole { name: "fs_in_percent";   query: "inode/percent/number()" }
+        XmlRole { name: "fs_in_usage";   query: "inode/usage/number()" }
+        XmlRole { name: "fs_in_total";   query: "inode/total/number()" }
+    }
+    ServiceModel { id: sysmodel
+        objectName: "sys"
+        query: '/monit/service[@type=5]'
+        xml: xmldata
+    }
+    ServiceModel { id: dirmodel
+        objectName: "dir"
+        query: '/monit/service[@type=1]'
+        xml: xmldata
+    }
+    ServiceModel { id: filemodel
+        objectName: "file"
+        query: '/monit/service[@type=2]'
+        xml: xmldata
+    }
 
     /* detect closing of app*/
     signal willQuit()
@@ -210,8 +322,14 @@ ApplicationWindow {
         Qt.application.version = "unreleased";
         console.info("Intialized", Qt.application.name, "version", Qt.application.version, "by", Qt.application.organization );
         console.debug("Parameters: " + Qt.application.arguments.join(" "))
+        getData()
     }
 
+    property string xmldata
+    XHRItem { id: x; property bool busy }
+    function getData() {
+        x.xhr(xmlurl, "GET", false, function(r) { xmldata = r; })
+    }
     // application settings:
     ConfigurationGroup  {
         id: settings
@@ -260,15 +378,7 @@ ApplicationWindow {
         }
     }
 
-    initialPage: Component {
-        SvcPageBase {
-            //title: qsTr("Platform")
-            //subtitle: qsTr("Services")
-            //model: servicemodel
-        }
-    }
-
-// vi
+    initialPage: Component { SvcPageBase { } }
     //cover: CoverPage{}
 
     //PageBusyIndicator { running: app.status === Component.Loading }

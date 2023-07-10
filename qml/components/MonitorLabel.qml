@@ -7,8 +7,10 @@ import QtQuick 2.6
 import Sailfish.Silica 1.0
 
 Label {
-    font.pixelSize: Theme.fontSizeTiny
-    color: Theme.secondaryHighlightColor 
+    width: parent.cell
+    font.pixelSize: Theme.fontSizeExtraSmall
+    //font.pixelSize: Theme.fontSizeTiny
+    color: Theme.highlightColor 
     wrapMode: Text.Wrap
 }
 

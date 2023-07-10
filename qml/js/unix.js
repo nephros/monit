@@ -38,6 +38,6 @@ function octal2string(s, type) {
 		+ stringTable[owner].replace(/x$/, suid ? "s" : "x" ).replace(/-$/, suid ? "S" : "-" )
 		+ stringTable[group].replace(/x$/, sgid ? "s" : "x" ).replace(/-$/, sgid ? "S" : "-" )
 		+ stringTable[other].replace(/x$/, sticky ? "t" : "x" ).replace(/-$/, sticky ? "T" : "-" )
-	console.debug("got:", s, ret);
+	//console.debug("got:", s, ret);
 	return ret;
 }
