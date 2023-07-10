@@ -86,11 +86,24 @@ Page { id: page
             }
             //SectionHeader { text: page.subtitle}
             SectionHeader { text: "System Data"; visible: system.visible}
-            ColumnView { id: system
-                visible: (!!!page.objectName)
-                model: sysmodel
-                delegate: MonitorDelegate{}
-                itemHeight: Theme.itemSizeMedium
+            Grid { id: system
+                visible: (!!!page.objectName) // the "first" page has no object name
+                width: parent.width
+                columns: isLandscape ? 3 : 2
+                flow: Grid.TopToBottom
+                Repeater {
+                    model: systemdata ? Object.keys(systemdata) : null
+                    delegate: DetailItem {
+                        width: system.width/system.columns
+                        label: modelData[0].toUpperCase() + modelData.substr(1)
+                        value: {
+                            if  ((modelData == "memory") || (modelData == "swap")) {
+                                return Math.floor(systemdata[modelData]/1024)+'MB'
+                            }
+                            return systemdata[modelData]
+                        }
+                    }
+                }
             }
             SilicaListView { id: svcview
                 height: page.height - (head.height + platform.height)

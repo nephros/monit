@@ -96,6 +96,7 @@ ApplicationWindow {
     /* **** VARIABLES ***** */
     property var platformdata
     property var monitdata
+    property var systemdata
     XmlListModel { id: platformmodel
         //source: "http://app:secret@127.0.0.1:2812/_status?format=xml"
         //source: xmlurl
@@ -273,9 +274,9 @@ ApplicationWindow {
         // filesystem:
         XmlRole { name: "fstype";  query: "fstype/string()" }
         XmlRole { name: "fsflags"; query: "fsflags/string()" }
-        XmlRole { name: "fsmode"; query: "mode/number()" }
-        XmlRole { name: "fsuid"; query: "uid/number()" }
-        XmlRole { name: "fsgid"; query: "gid/number()" }
+        XmlRole { name: "mode"; query: "mode/number()" }
+        XmlRole { name: "uid"; query: "uid/number()" }
+        XmlRole { name: "gid"; query: "gid/number()" }
         XmlRole { name: "fs_bl_percent";   query: "block/percent/number()" }
         XmlRole { name: "fs_bl_usage";   query: "block/usage/number()" }
         XmlRole { name: "fs_bl_total";   query: "block/total/number()" }
@@ -283,20 +284,47 @@ ApplicationWindow {
         XmlRole { name: "fs_in_usage";   query: "inode/usage/number()" }
         XmlRole { name: "fs_in_total";   query: "inode/total/number()" }
     }
-    ServiceModel { id: sysmodel
+    XmlListModel { id: sysmodel
         objectName: "sys"
         query: '/monit/service[@type=5]'
         xml: xmldata
+        XmlRole { name: "FD alloc";   query: "filedescriptors/allocated/number()" }
+        XmlRole { name: "FD max";   query: "filedescriptors/maximum/number()" }
+        XmlRole { name: "load 1";    query: "system/load/avg01/number()" }
+        XmlRole { name: "load 5";    query: "system/load/avg05/number()" }
+        XmlRole { name: "load 15";   query: "system/load/avg15/number()" }
+        XmlRole { name: "CPU sys";   query: "system/cpu/system/number()" }
+        XmlRole { name: "CPU user";   query: "system/cpu/user/number()" }
+        XmlRole { name: "CPU nice";   query: "system/cpu/nice/number()" }
+        XmlRole { name: "CPU wait";   query: "system/cpu/wait/number()" }
+        XmlRole { name: "Mem %";   query: "system/memory/percent/number()" }
+        XmlRole { name: "mem kB";   query: "system/memory/kilobyte/number()" }
+        XmlRole { name: "swap %";   query: "system/swap/percent/number()" }
+        XmlRole { name: "swap kB";   query: "system/swap/kilobyte/number()" }
+        onStatusChanged: {
+            // split out the  "platform" data:
+            if (status === XmlListModel.Ready) {
+                console.info("System model loaded.")
+                systemdata = sysmodel.get(0);
+            }
+        }
     }
     ServiceModel { id: dirmodel
         objectName: "dir"
         query: '/monit/service[@type=1]'
         xml: xmldata
+        XmlRole { name: "mode"; query: "mode/number()" }
+        XmlRole { name: "uid"; query: "uid/number()" }
+        XmlRole { name: "gid"; query: "gid/number()" }
     }
     ServiceModel { id: filemodel
         objectName: "file"
         query: '/monit/service[@type=2]'
         xml: xmldata
+        XmlRole { name: "size"; query: "size/number()" }
+        XmlRole { name: "mode"; query: "mode/number()" }
+        XmlRole { name: "uid"; query: "uid/number()" }
+        XmlRole { name: "gid"; query: "gid/number()" }
     }
 
     /* detect closing of app*/

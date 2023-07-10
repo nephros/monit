@@ -5,7 +5,7 @@
 
 import QtQuick 2.6
 import Sailfish.Silica 1.0
-//import "../js/unix.js" as Unix
+import "../js/unix.js" as Unix
 
 ListItem { id: root
 
@@ -28,6 +28,12 @@ ListItem { id: root
         },
         State { name: "filesystem"
             PropertyChanges { target: details; sourceComponent: fsdetails}
+        },
+        State { name: "dir"
+            PropertyChanges { target: details; sourceComponent: dirdetails}
+        },
+        State { name: "file"
+            PropertyChanges { target: details; sourceComponent: filedetails}
         }
     ]
     state: types[model.type]
@@ -38,8 +44,8 @@ ListItem { id: root
         running:  (monitormodes[monitor] === 'monitored')
     }
     // Odd/even marking:
-    property color oddColor: "transparent"
-    property color evenColor: Theme.highlightBackgroundColor
+    property color evenColor: "transparent"
+    property color oddColor: Theme.highlightBackgroundColor
     property bool isOdd: (index %2 != 0)
     Rectangle { id: oddevenrect
         anchors.fill: parent
@@ -149,6 +155,35 @@ ListItem { id: root
         //MonitorLabel { text: Math.floor(read_total/1024)+'kB' }
         //MonitorLabel { text: Math.floor(write_total/1024)+'kB' }
         MonitorLabel { text: 'r/w: '+ Math.floor(read_now/1024) +'/'+ Math.floor(write_now/1024)+'kB' }
+    }}
+    Component { id: dirdetails; Grid {
+        columns: 2
+        function group(id) { return user(id) }
+        function user(id) {
+            if (id === 0) return "root";
+            if (id === 1000000) return "nemo";
+            return "ID" + id
+        }
+        property int cell: width /  columns
+        //MonitorLabel { text: Unix.octal2string(mode, "d") + " " + user(uid) + '/' + group(gid) }
+        MonitorLabel { text: !!mode ? Unix.octal2string(mode, "d") : "-" }
+        MonitorLabel { text: user(uid) + '/' + group(gid) }
+        //MonitorLabel { text: Unix.octal2string(fsmode, "d") + " " + user(fsuid) + '/' + group(fsgid) }
+    }}
+    Component { id: filedetails; Grid {
+        columns:  3
+        function group(id) { return user(id) }
+        function user(id) {
+            if (id === 0) return "root";
+            if (id === 1000000) return "nemo";
+            return "ID" + id
+        }
+        property int cell: width /  columns
+        MonitorLabel {text: Format.formatFileSize(Math.floor(size)) }
+        //MonitorLabel { text: Unix.octal2string(mode, "d") + " " + user(uid) + '/' + group(gid) }
+        MonitorLabel { text: !!mode ? Unix.octal2string(mode, "d") : "-" }
+        MonitorLabel { text: user(uid) + '/' + group(gid) }
+        //MonitorLabel { text: Unix.octal2string(fsmode, "d") + " " + user(fsuid) + '/' + group(fsgid) }
     }}
 }
 
