@@ -80,6 +80,13 @@ rm -rf %{buildroot}
 # mangle version info
 sed -i -e "s/unreleased/%{version}/" %{buildroot}%{_datadir}/%{name}/qml/%{name}.qml
 
+# remove unnecessary Opal things:
+for f in .git .gitignore .reuse LICENSES doc translations CHANGELOG.md CONTRIBUTORS.md README.md release-module.sh
+do
+rm -rf %{buildroot}%{_datadir}/%{name}/qml/external/opal-about/$f
+done
+
+
 # << install post
 
 desktop-file-install --delete-original       \
@@ -96,4 +103,4 @@ desktop-file-install --delete-original       \
 %{_datadir}/icons/*/*/apps/%{name}.png
 %{_datadir}/icons/*/*/apps/%{name}.svg
 # >> files
-# << files
+# -files
