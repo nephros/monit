@@ -9,7 +9,7 @@ Name:       harbour-monit
 # << macros
 
 Summary:    Sailfish OS GUI for monit
-Version:    0.9.2
+Version:    0.9.3
 Release:    0
 Group:      Applications
 License:    ASL 2.0

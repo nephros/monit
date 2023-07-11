@@ -307,20 +307,49 @@ ApplicationWindow {
         property string subState
         property string unitFileState
 
-        function start(u) {
+        function start() {
             //console.debug("dbus start unit", u );
             call('Start',
                 ["replace",],
-                function(result) { console.debug("Job:", JSON.stringify(result)); },
-                function(result) { console.warn("Start %1".arg(u), result) }
+                function(result) { console.debug("Start Job created"); },
+                function(result) { console.warn("Start", result) }
             );
         }
-        function stop(u) {
+        function stop() {
             //console.debug("dbus stop unit", u );
             call('Stop',
                 [ "replace",],
-                function(result) { console.debug("Job:", JSON.stringify(result)); },
-                function(result) { console.warn("Stop %1".arg(u), result) }
+                function(result) { console.debug("Stop Job created"); },
+                function(result) { console.warn("Stop", result) }
+            );
+        }
+        function enable()   { console.debug("Trying to ensable"); manager.enable("monit.service") }
+        function disable()  { console.debug("Trying to disable"); manager.disable("monit.service") }
+    }
+    DBusInterface {
+        id: manager
+        bus: DBus.SystemBus
+        service: "org.freedesktop.systemd1"
+        path: "/org/freedesktop/systemd1"
+        iface: "org.freedesktop.systemd1.Manager"
+
+        function enable(u) {
+            typedCall('EnableUnitFiles', [
+                { "type": "as", "value": [u] },
+                { "type": "b", "value": false },
+                { "type": "b", "value": false },
+            ],
+            function(result) { console.warn("Enable Job created.") },
+            function(result) { console.warn("Enable", result[1]) }
+            );
+        }
+        function disable(u) {
+            typedCall('DisableUnitFiles', [
+                { "type": "as", "value": [u] },
+                { "type": "b", "value": false },
+            ],
+            function(result) { console.warn("Disable Job created.") },
+            function(result) { console.warn("Disable", result) }
             );
         }
     }
