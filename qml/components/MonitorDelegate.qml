@@ -65,17 +65,18 @@ ListItem { id: root
         Indicator { id: monindicator
             width: Theme.iconSizeSmall
             height: width
-            checked: (monitormodes[monitor] === 'monitored')
+            checked: (monitorstates[monitor] === 'monitored')
+            busy:    (monitorstates[monitor] === 'waiting')
             palette.primaryColor: Theme.highlightColor
         }
         Indicator { id: stateindicator
             width: Theme.iconSizeSmall
             height: width
-            //checked: (statuses[monitor] === 'ok')
             checked: monindicator.checked
-            busy:    (statuses[monitor] === 'initializing')
+            busy:    (monitorstates[monitor] === 'initializing')
+            property bool ok: (statetypes[monitorstatus] === 'ok')
             palette.backgroundGlowColor :{
-                checked ? "darkgreen" : "red"
+                ok ? "darkgreen" : "red"
             }
         }
         Label {
@@ -85,6 +86,15 @@ ListItem { id: root
             text: name
             font.pixelSize: Theme.fontSizeSmall
         }
+    }
+    Label {
+        anchors.horizontalCenter: indicators.horizontalCenter
+        anchors.bottom: parent.bottom
+        width: indicators.width
+        text: monitor + '/' + monitorstatus + " " + monitorstates[monitor] + "," + monitormodes[monitor]
+        color: Theme.secondaryColor
+        font.pixelSize: Theme.fontSizeTiny
+        horizontalAlignment: Qt.AlignHCenter
     }
     Row { id: content
         anchors.top: parent.top

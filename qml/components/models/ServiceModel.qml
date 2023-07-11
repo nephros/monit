@@ -13,7 +13,7 @@ XmlListModel {
     //common/service
     XmlRole { name: "type";        query: "@type/number()" }
     XmlRole { name: "name";        query: "name/string()" }
-    XmlRole { name: "status";      query: "status/number()"; isKey: true}
+    XmlRole { name: "monitorstatus";      query: "status/number()"; isKey: true}
     XmlRole { name: "monitor";     query: "monitor/number()"; isKey: true}
     XmlRole { name: "monitormode"; query: "monitormode/number()"; isKey: true}
     //XmlRole { name: "collected";   query: "collected_sec/number()"; isKey: true }

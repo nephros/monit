@@ -61,7 +61,7 @@ ApplicationWindow {
     readonly property string moniturl: monit.proto + monit.host + ":" + monit.port
     readonly property string xmlurl: monit.proto + monit.auth + '@' + monit.host + ":" + monit.port + monit.xmluri
 
-    // see monit.h
+    // see monit.h: https://bitbucket.org/tildeslash/monit/src/master/src/monit.h 
     readonly property var types: [
         "filesystem",
         "dir",
@@ -73,24 +73,28 @@ ApplicationWindow {
         "program",
         "net",
     ]
-    readonly property var monitors: [
+    readonly property var monitormodes: [
         "active",
         "passive"
     ]
-    readonly property var monitormodes: [
+    readonly property var monitorstates: [
         "not monitored",
         "monitored",
         "initializing",
-        "",
-        "waiting",
+        "waiting"
     ]
-    readonly property var statuses: [
+    readonly property var connstates: [
+        "failed",
         "ok",
-        "down",
-        // TODO: unverified:
         "initializing",
-        "waiting",
-        "not monitored"
+    ]
+    readonly property var statetypes: [
+        "succeeded",
+        "failed",
+        "changed",
+        "not_changed",
+        "initializing",
+        "none"
     ]
 
     /* **** VARIABLES ***** */
