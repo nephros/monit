@@ -134,6 +134,44 @@
     </message>
 </context>
 <context>
+    <name>MonitorDelegate</name>
+    <message>
+        <source>checked %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Down</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>MonitorMenu</name>
+    <message>
+        <source>%1 Monitoring</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stop</source>
+        <translation type="unfinished">Stoppa</translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation type="unfinished">Starta</translation>
+    </message>
+    <message>
+        <source>%1 Service</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Restart Service</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Opal.About</name>
     <message>
         <source>About</source>
@@ -693,15 +731,31 @@
 <context>
     <name>harbour-monit</name>
     <message>
-        <source>Net</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Programs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Processes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Directories</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Filesystems</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remote Hosts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Network</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

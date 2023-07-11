@@ -69,11 +69,59 @@
     </message>
 </context>
 <context>
+    <name>MonitorDelegate</name>
+    <message>
+        <location filename="../qml/components/MonitorDelegate.qml" line="111"/>
+        <source>checked %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/components/MonitorDelegate.qml" line="118"/>
+        <source>Up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/components/MonitorDelegate.qml" line="118"/>
+        <source>Down</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>MonitorMenu</name>
+    <message>
+        <location filename="../qml/components/MonitorMenu.qml" line="13"/>
+        <source>%1 Monitoring</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/components/MonitorMenu.qml" line="13"/>
+        <location filename="../qml/components/MonitorMenu.qml" line="17"/>
+        <source>Stop</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/components/MonitorMenu.qml" line="13"/>
+        <location filename="../qml/components/MonitorMenu.qml" line="17"/>
+        <source>Start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/components/MonitorMenu.qml" line="17"/>
+        <source>%1 Service</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/components/MonitorMenu.qml" line="21"/>
+        <source>Restart Service</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Opal.About</name>
     <message>
         <location filename="../qml/external/opal-about/Opal/About/AboutPageBase.qml" line="691"/>
         <source>About</source>
-        <translation type="unfinished">Über</translation>
+        <translation>Über</translation>
     </message>
     <message>
         <location filename="../qml/external/opal-about/Opal/About/AboutPageBase.qml" line="738"/>
@@ -416,7 +464,7 @@
         <location filename="../qml/pages/SettingsPage.qml" line="26"/>
         <source>Settings</source>
         <comment>page title</comment>
-        <translation type="unfinished">Einstellungen</translation>
+        <translation>Einstellungen</translation>
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="30"/>
@@ -453,32 +501,32 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SvcPageBase.qml" line="70"/>
+        <location filename="../qml/pages/SvcPageBase.qml" line="119"/>
         <source>Monit is inactive.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SvcPageBase.qml" line="71"/>
+        <location filename="../qml/pages/SvcPageBase.qml" line="120"/>
         <source>Pull down to go to Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SvcPageBase.qml" line="74"/>
+        <location filename="../qml/pages/SvcPageBase.qml" line="123"/>
         <source>About</source>
         <translation type="unfinished">Über</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SvcPageBase.qml" line="75"/>
+        <location filename="../qml/pages/SvcPageBase.qml" line="124"/>
         <source>Settings</source>
         <translation type="unfinished">Einstellungen</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SvcPageBase.qml" line="76"/>
+        <location filename="../qml/pages/SvcPageBase.qml" line="125"/>
         <source>Open Browser</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SvcPageBase.qml" line="77"/>
+        <location filename="../qml/pages/SvcPageBase.qml" line="127"/>
         <source>Refresh</source>
         <translation type="unfinished"></translation>
     </message>
@@ -574,17 +622,37 @@
 <context>
     <name>harbour-monit</name>
     <message>
-        <location filename="../qml/harbour-monit.qml" line="40"/>
-        <source>Net</source>
+        <location filename="../qml/harbour-monit.qml" line="45"/>
+        <source>Directories</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/harbour-monit.qml" line="41"/>
+        <location filename="../qml/harbour-monit.qml" line="46"/>
+        <source>Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/harbour-monit.qml" line="47"/>
+        <source>Filesystems</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/harbour-monit.qml" line="48"/>
+        <source>Remote Hosts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/harbour-monit.qml" line="49"/>
+        <source>Network</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/harbour-monit.qml" line="50"/>
         <source>Programs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/harbour-monit.qml" line="42"/>
+        <location filename="../qml/harbour-monit.qml" line="51"/>
         <source>Processes</source>
         <translation type="unfinished"></translation>
     </message>
