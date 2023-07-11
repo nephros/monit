@@ -4,40 +4,35 @@ Version: 0.9.1
 Release: 0
 Group: Applications
 License: ASL 2.0
-URL: https://github.com:sailfishos-chum/monit
-SCM: https://github.com:sailfishos-chum/monit
+URL: https://github.com/nephros/monit
+SCM: https://github.com/nephros/monit
 Sources:
     - '%{name}-%{version}.tar.gz'
 Description: |
-        Monit. Barking at daemons.
+    Monit. Barking at daemons.
 
-        Monit is a small Open Source utility for managing and monitoring Unix
-        systems. Monit conducts automatic maintenance and repair and can execute
-        meaningful causal actions in error situations.
+    Monit is a small Open Source utility for managing and monitoring Unix
+    systems. Monit conducts automatic maintenance and repair and can execute
+    meaningful causal actions in error situations.
 
-        This is a simple Sailfish OS GUI application to view the status of the daemon.
+    This is a simple Sailfish OS GUI application to view the status of the daemon.
 
-        %if "%{?vendor}" == "chum"
-        Title: Monit GUI
-        Type: desktop-application
-        PackagedBy: nephros
-        Categories:
-         - System
-         - Monitor
-        Custom:
-          PackagingRepo: https://github.com/nephros/monit
-          Repo: https://github.com/sailfishos-chum/monit
-        PackageIcon: https://mmonit.com/monit/img/logo.png
-        #        Screenshots:
-        #           - https://mmonit.com/monit/img/screenshots/1.png
-        #           - https://mmonit.com/monit/img/screenshots/9.png
-        #           - https://mmonit.com/monit/img/screenshots/10.png
-        #           - https://mmonit.com/monit/img/screenshots/2.png
-        #           - https://mmonit.com/monit/img/screenshots/4.png
-        #           - https://mmonit.com/monit/img/screenshots/5.png
-        Links:
-          Homepage: https://www.mmonit.com/monit/slides
-        %endif
+    %if "%{?vendor}" == "chum"
+    Title: Monit GUI
+    Type: desktop-application
+    PackagedBy: nephros
+    Categories:
+     - System
+     - Monitor
+    Custom:
+      PackagingRepo: https://github.com/nephros/monit
+      Repo: https://github.com/nephros/monit
+    PackageIcon: %{url}/master/icons/%{name}.svg
+    Screenshots:
+     - %{url}/raw/metadata/screenshots/screenshot1.png
+    Links:
+      Homepage: https://www.mmonit.com/monit/slides
+    %endif
 
 SetupOptions: -q -n %{name}-%{version}
 RpmLintIgnore:
@@ -46,12 +41,12 @@ RpmLintIgnore:
   - 'invalid-url'
 #Patches:
 #
-Macros:
-  - |
-    spectacle_bug; hack_fix
-    %if 0%{?sailfishos_version} > 40300
-    BuildRequires:  pkgconfig(libcrypt)
-    %endif
+#Macros:
+#  - |
+#    spectacle_bug; hack_fix
+#    %if 0%{?sailfishos_version} > 40300
+#    BuildRequires:  pkgconfig(libcrypt)
+#    %endif
 Requires:
   - monit >= 5.24
   - libsailfishapp-launcher

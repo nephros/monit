@@ -7,10 +7,6 @@ Name:       harbour-monit
 
 # >> macros
 # << macros
-%define spectacle_bug hack_fix
-%if 0%{?sailfishos_version} > 40300
-BuildRequires:  pkgconfig(libcrypt)
-%endif
 
 Summary:    Sailfish OS GUI for monit
 Version:    0.9.1
@@ -18,7 +14,7 @@ Release:    0
 Group:      Applications
 License:    ASL 2.0
 BuildArch:  noarch
-URL:        https://github.com:sailfishos-chum/monit
+URL:        https://github.com/nephros/monit
 Source0:    %{name}-%{version}.tar.gz
 Source100:  harbour-monit.yaml
 Source101:  harbour-monit-rpmlintrc
@@ -48,15 +44,10 @@ Categories:
  - Monitor
 Custom:
   PackagingRepo: https://github.com/nephros/monit
-  Repo: https://github.com/sailfishos-chum/monit
-PackageIcon: https://mmonit.com/monit/img/logo.png
-#        Screenshots:
-#           - https://mmonit.com/monit/img/screenshots/1.png
-#           - https://mmonit.com/monit/img/screenshots/9.png
-#           - https://mmonit.com/monit/img/screenshots/10.png
-#           - https://mmonit.com/monit/img/screenshots/2.png
-#           - https://mmonit.com/monit/img/screenshots/4.png
-#           - https://mmonit.com/monit/img/screenshots/5.png
+  Repo: https://github.com/nephros/monit
+PackageIcon: %{url}/master/icons/%{name}.svg
+Screenshots:
+ - %{url}/raw/metadata/screenshots/screenshot1.png
 Links:
   Homepage: https://www.mmonit.com/monit/slides
 %endif
