@@ -64,7 +64,7 @@ Page { id: page
                     }
                 }
             }
-            SectionHeader { text: QsTr("Platform"); visible: platform.visible}
+            SectionHeader { text: qsTr("Platform"); visible: platform.visible}
             Grid { id: platform
                 visible: (!!!page.objectName) // the "first" page has no object name
                 width: parent.width
