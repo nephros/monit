@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1">
+<TS version="2.1" language="en_US">
 <context>
     <name>LicenseListPart</name>
     <message>
@@ -10,79 +10,35 @@
     </message>
 </context>
 <context>
-    <name>MonitorDelegate</name>
-    <message>
-        <location filename="../qml/components/MonitorDelegate.qml" line="111"/>
-        <source>checked %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/components/MonitorDelegate.qml" line="118"/>
-        <source>Up</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/components/MonitorDelegate.qml" line="118"/>
-        <source>Down</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>MonitorMenu</name>
-    <message>
-        <location filename="../qml/components/MonitorMenu.qml" line="13"/>
-        <source>%1 Monitoring</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/components/MonitorMenu.qml" line="13"/>
-        <location filename="../qml/components/MonitorMenu.qml" line="17"/>
-        <source>Stop</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/components/MonitorMenu.qml" line="13"/>
-        <location filename="../qml/components/MonitorMenu.qml" line="17"/>
-        <source>Start</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/components/MonitorMenu.qml" line="17"/>
-        <source>%1 Service</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/components/MonitorMenu.qml" line="21"/>
-        <source>Restart Service</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>Opal.About</name>
     <message>
-        <location filename="../qml/external/opal-about/Opal/About/AboutPageBase.qml" line="691"/>
+        <location filename="../qml/external/opal-about/Opal/About/AboutPageBase.qml" line="693"/>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/external/opal-about/Opal/About/AboutPageBase.qml" line="738"/>
+        <location filename="../qml/external/opal-about/Opal/About/AboutPageBase.qml" line="740"/>
         <source>Version %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/external/opal-about/Opal/About/AboutPageBase.qml" line="762"/>
+        <source>Version %1 (%2)</source>
+        <translation type="vanished">Version %1 (%2)</translation>
+    </message>
+    <message>
+        <location filename="../qml/external/opal-about/Opal/About/AboutPageBase.qml" line="764"/>
         <location filename="../qml/external/opal-about/Opal/About/private/ContributorsPage.qml" line="38"/>
         <location filename="../qml/external/opal-about/Opal/About/private/ContributorsPage.qml" line="59"/>
         <source>Development</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/external/opal-about/Opal/About/AboutPageBase.qml" line="765"/>
+        <location filename="../qml/external/opal-about/Opal/About/AboutPageBase.qml" line="767"/>
         <source>show contributors</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/external/opal-about/Opal/About/AboutPageBase.qml" line="778"/>
+        <location filename="../qml/external/opal-about/Opal/About/AboutPageBase.qml" line="780"/>
         <location filename="../qml/external/opal-about/Opal/About/private/ContributorsPage.qml" line="118"/>
         <location filename="../qml/external/opal-about/Opal/About/private/ContributorsPage.qml" line="142"/>
         <location filename="../qml/external/opal-about/Opal/About/private/LicenseListPart.qml" line="73"/>
@@ -90,54 +46,40 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/external/opal-about/Opal/About/AboutPageBase.qml" line="783"/>
+        <location filename="../qml/external/opal-about/Opal/About/AboutPageBase.qml" line="785"/>
         <location filename="../qml/external/opal-about/Opal/About/private/ChangelogPage.qml" line="26"/>
         <source>Changelog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/external/opal-about/Opal/About/AboutPageBase.qml" line="791"/>
-        <source>Translations</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/external/opal-about/Opal/About/AboutPageBase.qml" line="796"/>
-        <location filename="../qml/external/opal-about/Opal/About/private/ContributorsPage.qml" line="116"/>
-        <location filename="../qml/external/opal-about/Opal/About/private/ContributorsPage.qml" line="145"/>
-        <location filename="../qml/external/opal-about/Opal/About/private/LicenseListPart.qml" line="79"/>
-        <source>Source Code</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/external/opal-about/Opal/About/AboutPageBase.qml" line="813"/>
+        <location filename="../qml/external/opal-about/Opal/About/AboutPageBase.qml" line="815"/>
         <source>Donations</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/external/opal-about/Opal/About/AboutPageBase.qml" line="823"/>
+        <location filename="../qml/external/opal-about/Opal/About/AboutPageBase.qml" line="825"/>
         <source>License</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="../qml/external/opal-about/Opal/About/AboutPageBase.qml" line="836"/>
+        <location filename="../qml/external/opal-about/Opal/About/AboutPageBase.qml" line="838"/>
         <source>show license(s)</source>
         <translation type="unfinished">
+            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
     <message>
-        <location filename="../qml/external/opal-about/Opal/About/ChangelogNews.qml" line="208"/>
-        <source>News</source>
+        <location filename="../qml/external/opal-about/Opal/About/AboutPageBase.qml" line="793"/>
+        <source>Translations</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/external/opal-about/Opal/About/ChangelogNews.qml" line="209"/>
-        <source>Changes since version %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/external/opal-about/Opal/About/InfoSection.qml" line="78"/>
-        <source>show details</source>
+        <location filename="../qml/external/opal-about/Opal/About/AboutPageBase.qml" line="798"/>
+        <location filename="../qml/external/opal-about/Opal/About/private/ContributorsPage.qml" line="116"/>
+        <location filename="../qml/external/opal-about/Opal/About/private/ContributorsPage.qml" line="145"/>
+        <location filename="../qml/external/opal-about/Opal/About/private/LicenseListPart.qml" line="79"/>
+        <source>Source Code</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -160,6 +102,33 @@
         <location filename="../qml/external/opal-about/Opal/About/private/LicensePage.qml" line="61"/>
         <source>Details</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/external/opal-about/Opal/About/InfoSection.qml" line="78"/>
+        <source>show details</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/external/opal-about/Opal/About/private/LicensePage.qml" line="48"/>
+        <source>Download license texts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../qml/external/opal-about/Opal/About/private/LicensePage.qml" line="62"/>
+        <source>License(s)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message>
+        <location filename="../qml/external/opal-about/Opal/About/private/LicensePage.qml" line="75"/>
+        <source>Note: please check the source code for most accurate information.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please refer to &lt;a href=&apos;%1&apos;&gt;%1&lt;/a&gt;</source>
+        <translation type="vanished">Please refer to &lt;a href=&apos;%1&apos;&gt;%1&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../qml/external/opal-about/Opal/About/private/ExternalUrlPage.qml" line="27"/>
@@ -187,40 +156,18 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/external/opal-about/Opal/About/private/LicensePage.qml" line="48"/>
-        <source>Download license texts</source>
+        <location filename="../qml/external/opal-about/Opal/About/ChangelogNews.qml" line="208"/>
+        <source>News</source>
         <translation type="unfinished"></translation>
     </message>
-    <message numerus="yes">
-        <location filename="../qml/external/opal-about/Opal/About/private/LicensePage.qml" line="62"/>
-        <source>License(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-        </translation>
-    </message>
     <message>
-        <location filename="../qml/external/opal-about/Opal/About/private/LicensePage.qml" line="75"/>
-        <source>Note: please check the source code for most accurate information.</source>
+        <location filename="../qml/external/opal-about/Opal/About/ChangelogNews.qml" line="209"/>
+        <source>Changes since version %1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>Opal.About.Common</name>
-    <message>
-        <location filename="../qml/external/opal-about/Opal/About/private/DonationsGroup.qml" line="40"/>
-        <source>If you want to support my work, you can buy me a cup of coffee.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/external/opal-about/Opal/About/private/DonationsGroup.qml" line="53"/>
-        <source>You can support this project by contributing, or by donating using any of these services.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/external/opal-about/Opal/About/private/DonationsGroup.qml" line="65"/>
-        <source>Your contributions to translations or code would be most welcome.</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <location filename="../qml/external/opal-about/Opal/About/private/ExtraTranslations.qml" line="12"/>
         <source>Author</source>
@@ -230,6 +177,7 @@
         <location filename="../qml/external/opal-about/Opal/About/private/ExtraTranslations.qml" line="13"/>
         <source>Author(s)</source>
         <translation type="unfinished">
+            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -242,6 +190,7 @@
         <location filename="../qml/external/opal-about/Opal/About/private/ExtraTranslations.qml" line="15"/>
         <source>Maintainer(s)</source>
         <translation type="unfinished">
+            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -279,6 +228,7 @@
         <location filename="../qml/external/opal-about/Opal/About/private/ExtraTranslations.qml" line="25"/>
         <source>Data License(s)</source>
         <translation type="unfinished">
+            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -387,6 +337,69 @@
         <source>Turkish</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../qml/external/opal-about/Opal/About/private/DonationsGroup.qml" line="40"/>
+        <source>If you want to support my work, you can buy me a cup of coffee.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/external/opal-about/Opal/About/private/DonationsGroup.qml" line="53"/>
+        <source>You can support this project by contributing, or by donating using any of these services.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/external/opal-about/Opal/About/private/DonationsGroup.qml" line="65"/>
+        <source>Your contributions to translations or code would be most welcome.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>MonitorDelegate</name>
+    <message>
+        <location filename="../qml/components/MonitorDelegate.qml" line="111"/>
+        <source>checked %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/components/MonitorDelegate.qml" line="118"/>
+        <source>Up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/components/MonitorDelegate.qml" line="118"/>
+        <source>Down</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>MonitorMenu</name>
+    <message>
+        <location filename="../qml/components/MonitorMenu.qml" line="13"/>
+        <source>%1 Monitoring</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/components/MonitorMenu.qml" line="13"/>
+        <location filename="../qml/components/MonitorMenu.qml" line="17"/>
+        <source>Stop</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/components/MonitorMenu.qml" line="13"/>
+        <location filename="../qml/components/MonitorMenu.qml" line="17"/>
+        <source>Start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/components/MonitorMenu.qml" line="17"/>
+        <source>%1 Service</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/components/MonitorMenu.qml" line="21"/>
+        <source>Restart Service</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SettingsPage</name>
@@ -433,6 +446,11 @@
     <message>
         <location filename="../qml/pages/SvcPageBase.qml" line="45"/>
         <source>Monit Daemon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SvcPageBase.qml" line="67"/>
+        <source>Platform</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
