@@ -3,3 +3,5 @@ build.log
 translations/*.qm
 icons/*x*
 Makefile
+monit
+upstream
