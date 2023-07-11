@@ -10,6 +10,54 @@
     </message>
 </context>
 <context>
+    <name>MonitorDelegate</name>
+    <message>
+        <location filename="../qml/components/MonitorDelegate.qml" line="111"/>
+        <source>checked %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/components/MonitorDelegate.qml" line="118"/>
+        <source>Up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/components/MonitorDelegate.qml" line="118"/>
+        <source>Down</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>MonitorMenu</name>
+    <message>
+        <location filename="../qml/components/MonitorMenu.qml" line="13"/>
+        <source>%1 Monitoring</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/components/MonitorMenu.qml" line="13"/>
+        <location filename="../qml/components/MonitorMenu.qml" line="17"/>
+        <source>Stop</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/components/MonitorMenu.qml" line="13"/>
+        <location filename="../qml/components/MonitorMenu.qml" line="17"/>
+        <source>Start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/components/MonitorMenu.qml" line="17"/>
+        <source>%1 Service</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/components/MonitorMenu.qml" line="21"/>
+        <source>Restart Service</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Opal.About</name>
     <message>
         <location filename="../qml/external/opal-about/Opal/About/AboutPageBase.qml" line="693"/>
@@ -350,54 +398,6 @@
     <message>
         <location filename="../qml/external/opal-about/Opal/About/private/DonationsGroup.qml" line="65"/>
         <source>Your contributions to translations or code would be most welcome.</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>MonitorDelegate</name>
-    <message>
-        <location filename="../qml/components/MonitorDelegate.qml" line="111"/>
-        <source>checked %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/components/MonitorDelegate.qml" line="118"/>
-        <source>Up</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/components/MonitorDelegate.qml" line="118"/>
-        <source>Down</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>MonitorMenu</name>
-    <message>
-        <location filename="../qml/components/MonitorMenu.qml" line="13"/>
-        <source>%1 Monitoring</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/components/MonitorMenu.qml" line="13"/>
-        <location filename="../qml/components/MonitorMenu.qml" line="17"/>
-        <source>Stop</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/components/MonitorMenu.qml" line="13"/>
-        <location filename="../qml/components/MonitorMenu.qml" line="17"/>
-        <source>Start</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/components/MonitorMenu.qml" line="17"/>
-        <source>%1 Service</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/components/MonitorMenu.qml" line="21"/>
-        <source>Restart Service</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

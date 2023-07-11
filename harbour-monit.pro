@@ -10,7 +10,10 @@ SOURCES += \
     qml/$${TARGET}.qml \
     qml/pages/*.qml \
     qml/cover/*.qml \
-    qml/components/*.qml
+    qml/components/*.qml \
+    qml/components/*/*.qml \
+    qml/external/opal-about/Opal/About/*.qml\
+    qml/external/opal-about/Opal/About/private/*.qml
 
 }
 

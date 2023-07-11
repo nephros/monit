@@ -9,6 +9,44 @@
     </message>
 </context>
 <context>
+    <name>MonitorDelegate</name>
+    <message>
+        <source>checked %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Down</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>MonitorMenu</name>
+    <message>
+        <source>%1 Monitoring</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stop</source>
+        <translation type="unfinished">Stoppa</translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation type="unfinished">Starta</translation>
+    </message>
+    <message>
+        <source>%1 Service</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Restart Service</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Opal.About</name>
     <message>
         <source>About</source>
@@ -278,44 +316,6 @@
     </message>
     <message>
         <source>Turkish</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>MonitorDelegate</name>
-    <message>
-        <source>checked %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Up</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Down</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>MonitorMenu</name>
-    <message>
-        <source>%1 Monitoring</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Stop</source>
-        <translation type="unfinished">Stoppa</translation>
-    </message>
-    <message>
-        <source>Start</source>
-        <translation type="unfinished">Starta</translation>
-    </message>
-    <message>
-        <source>%1 Service</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Restart Service</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
