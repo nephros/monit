@@ -36,6 +36,6 @@ INSTALLS += qml
 OTHER_FILES += $$files(rpm/*)
 
 include(translations/translations.pri)
-#include(sailjail/sailjail.pri)
+include(sailjail/sailjail.pri)
 # must be last
 include(icons/icons.pri)

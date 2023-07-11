@@ -12,7 +12,7 @@ Name=Monit
 [X-Sailjail]
 ApplicationName=Monit
 OrganizationName=org.nephros.sailfish
-Permissions=
+Permissions=Internet
 
 [X-HarbourBackup]
 BackupConfigList=/org/nephros/Monit

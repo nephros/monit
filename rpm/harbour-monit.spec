@@ -9,7 +9,7 @@ Name:       harbour-monit
 # << macros
 
 Summary:    Sailfish OS GUI for monit
-Version:    0.9.1
+Version:    0.9.2
 Release:    0
 Group:      Applications
 License:    ASL 2.0
@@ -102,5 +102,6 @@ desktop-file-install --delete-original       \
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/*/*/apps/%{name}.png
 %{_datadir}/icons/*/*/apps/%{name}.svg
+%{_sysconfdir}/sailjail/permissions/*.profile
 # >> files
-# -files
+# << files
