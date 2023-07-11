@@ -27,9 +27,9 @@ Description: |
     Custom:
       PackagingRepo: https://github.com/nephros/monit
       Repo: https://github.com/nephros/monit
-    PackageIcon: %{url}/master/icons/%{name}.svg
+    PackageIcon: %{url}/app/icons/%{name}.svg
     Screenshots:
-     - %{url}/raw/metadata/screenshots/screenshot1.png
+      - %{url}/raw/app/Screenshot_001.png
     Links:
       Homepage: https://www.mmonit.com/monit/slides
     %endif
