@@ -15,6 +15,8 @@ appicon.sizes = \
 for(iconsize, appicon.sizes) {
     profile = $${iconsize}x$${iconsize}
 
+    system(mkdir -p $${_PRO_FILE_PWD_}/icons/$${profile})
+
     appicon.commands += /usr/bin/sailfish_svg2png \
         -z 1.0 -s 1 1 1 1 1 1 $${iconsize} \
         $${_PRO_FILE_PWD_}/icons/svgs \
@@ -24,6 +26,8 @@ for(iconsize, appicon.sizes) {
 }
 appicon.commands += true
 appicon.path = $$PREFIX/share/icons/hicolor/
+appicon.CONFIG += no_check_exist
+
 
 # also install SVG:
 svg.path = $$PREFIX/share/icons/hicolor/scalable/apps
