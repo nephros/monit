@@ -18,7 +18,7 @@ URL:        https://github.com/nephros/monit
 Source0:    %{name}-%{version}.tar.gz
 Source100:  harbour-monit.yaml
 Source101:  harbour-monit-rpmlintrc
-Requires:   monit >= 5.24
+Requires:   monit
 Requires:   libsailfishapp-launcher
 BuildRequires:  qt5-qttools-linguist
 BuildRequires:  qt5-qmake

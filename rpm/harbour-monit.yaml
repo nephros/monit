@@ -48,7 +48,8 @@ RpmLintIgnore:
 #    BuildRequires:  pkgconfig(libcrypt)
 #    %endif
 Requires:
-  - monit >= 5.24
+  # monit >= 5.24.0
+  - monit
   - libsailfishapp-launcher
 PkgBR:
   - qt5-qttools-linguist
