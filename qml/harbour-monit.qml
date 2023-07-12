@@ -73,14 +73,15 @@ ApplicationWindow {
         "program",
         "net",
     ]
-    readonly property var monitormodes: [
+    readonly property var monmodes: [
         "active",
         "passive"
     ]
-    readonly property var monitorstates: [
+    readonly property var monstatuses: [
         "not monitored",
         "monitored",
         "initializing",
+        "waiting",
         "waiting"
     ]
     readonly property var connstates: [
@@ -88,7 +89,7 @@ ApplicationWindow {
         "ok",
         "initializing",
     ]
-    readonly property var statetypes: [
+    readonly property var svcstatuses: [
         "succeeded",
         "failed",
         "changed",

@@ -13,10 +13,10 @@ XmlListModel {
     //common/service
     XmlRole { name: "type";        query: "@type/number()" }
     XmlRole { name: "name";        query: "name/string()" }
-    XmlRole { name: "monitorstatus";      query: "status/number()"; isKey: true}
-    XmlRole { name: "monitor";     query: "monitor/number()"; isKey: true}
-    XmlRole { name: "monitormode"; query: "monitormode/number()"; isKey: true}
-    //XmlRole { name: "collected";   query: "collected_sec/number()"; isKey: true }
+    XmlRole { name: "svcstatus";   query: "status/number()"; isKey: true}
+    XmlRole { name: "monstatus";   query: "monitor/number()"; isKey: true}
+    XmlRole { name: "monmode";     query: "monitormode/number()"; isKey: true}
+    XmlRole { name: "collected";   query: "collected_sec/number()"; isKey: true }
     /*
     onStatusChanged: {
         if (status === XmlListModel.Ready) {

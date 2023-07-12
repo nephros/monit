@@ -12,6 +12,10 @@ ListItem { id: root
     width: ListView.view.width
     contentHeight: content.height
 
+    property bool monitored: monstatus > 0
+    property bool ok: (svcstatuses[svcstatus] === 'succeeded')
+    property bool nok: (svcstatuses[svcstatus] === 'failed')
+    property bool warn: !ok && !nok
     states: [
         State { name: "process"
             PropertyChanges { target: details; sourceComponent: procdetails}
@@ -21,7 +25,8 @@ ListItem { id: root
         },
         State { name: "net"
             PropertyChanges { target: details; sourceComponent: netdetails}
-            PropertyChanges { target: stateindicator; checked: (netlink === 1)}
+            //PropertyChanges { target: stateindicator; checked: (netlink === 1)}
+            PropertyChanges { target: root; ok: (netlink === 1) ; nok: !ok}
         },
         State { name: "host"
             PropertyChanges { target: details; sourceComponent: hostdetails}
@@ -40,8 +45,8 @@ ListItem { id: root
     //onStateChanged: console.debug("State changed to", state, "for", name, "of type", model.type + " (" + types[model.type] + ")")
 
     menu: MonitorMenu {
-        monitoring: (monitormodes[monitor] === 'monitored')
-        running:  (monitormodes[monitor] === 'monitored')
+        monitoring: (monstatuses[monstatus] === 'monitored')
+        running:  (monstatuses[monstatus] === 'monitored')
     }
     // Odd/even marking:
     property color evenColor: "transparent"
@@ -62,21 +67,32 @@ ListItem { id: root
         anchors.left: parent.left
         anchors.verticalCenter: parent.verticalCenter
         rightPadding: Theme.paddingSmall
+        /*
         Indicator { id: monindicator
             width: Theme.iconSizeSmall
             height: width
-            checked: (monitorstates[monitor] === 'monitored')
-            busy:    (monitorstates[monitor] === 'waiting')
+            //checked: (monstatuses[monstatus] === 'monitored')
+            checked: monstatus > 0
+            //busy:    (monitorstates[monitorstatus] === 'waiting')
             palette.primaryColor: Theme.highlightColor
         }
+        */
         Indicator { id: stateindicator
             width: Theme.iconSizeSmall
             height: width
-            checked: monindicator.checked
-            busy:    (monitorstates[monitor] === 'initializing')
-            property bool ok: (statetypes[monitorstatus] === 'ok')
+            enabled: monitored
+            checked: true
+            //busy:    (svcstatuses[svcstatus] === 'initializing') ||  (svcstatuses[svcstatus] === 'waiting')
+            //busy:    (monstatuses[monstatus] === 'initializing') || (monstatuses[monstatus] === 'waiting')
+            busy: warn
             palette.backgroundGlowColor :{
-                ok ? "darkgreen" : "red"
+                if (!monitored) return "darkgray"
+                if (ok) return "green"
+                if (nok) return "red"
+                if (ok && (monstatuses[monstatus] === 'waiting')) return "darkgreen"
+                if (!ok && (monstatuses[monstatus] === 'waiting')) return "darkred"
+                if (warn) return "darkorange"
+                return "white"
             }
         }
         Label {
@@ -91,7 +107,7 @@ ListItem { id: root
         anchors.horizontalCenter: indicators.horizontalCenter
         anchors.bottom: parent.bottom
         width: indicators.width
-        text: monitor + '/' + monitorstatus + " " + monitorstates[monitor] + "," + monitormodes[monitor]
+        text: monstatus + '/' + svcstatus + " " + monstatuses[monstatus] + "," + svcstatuses[svcstatus]
         color: Theme.secondaryColor
         font.pixelSize: Theme.fontSizeTiny
         horizontalAlignment: Qt.AlignHCenter
