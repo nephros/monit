@@ -12,17 +12,27 @@
 <context>
     <name>MonitorDelegate</name>
     <message>
-        <location filename="../qml/components/MonitorDelegate.qml" line="111"/>
-        <source>checked %1</source>
+        <location filename="../qml/components/MonitorDelegate.qml" line="142"/>
+        <source>up %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/components/MonitorDelegate.qml" line="118"/>
+        <location filename="../qml/components/MonitorDelegate.qml" line="153"/>
+        <source>last %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/components/MonitorDelegate.qml" line="154"/>
+        <source>no output</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/components/MonitorDelegate.qml" line="160"/>
         <source>Up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/components/MonitorDelegate.qml" line="118"/>
+        <location filename="../qml/components/MonitorDelegate.qml" line="160"/>
         <source>Down</source>
         <translation type="unfinished"></translation>
     </message>
@@ -30,29 +40,34 @@
 <context>
     <name>MonitorMenu</name>
     <message>
-        <location filename="../qml/components/MonitorMenu.qml" line="13"/>
+        <location filename="../qml/components/MonitorMenu.qml" line="12"/>
+        <source>Open Details</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/components/MonitorMenu.qml" line="14"/>
         <source>%1 Monitoring</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/components/MonitorMenu.qml" line="13"/>
-        <location filename="../qml/components/MonitorMenu.qml" line="17"/>
+        <location filename="../qml/components/MonitorMenu.qml" line="14"/>
+        <location filename="../qml/components/MonitorMenu.qml" line="18"/>
         <source>Stop</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/components/MonitorMenu.qml" line="13"/>
-        <location filename="../qml/components/MonitorMenu.qml" line="17"/>
+        <location filename="../qml/components/MonitorMenu.qml" line="14"/>
+        <location filename="../qml/components/MonitorMenu.qml" line="18"/>
         <source>Start</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/components/MonitorMenu.qml" line="17"/>
+        <location filename="../qml/components/MonitorMenu.qml" line="18"/>
         <source>%1 Service</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/components/MonitorMenu.qml" line="21"/>
+        <location filename="../qml/components/MonitorMenu.qml" line="22"/>
         <source>Restart Service</source>
         <translation type="unfinished"></translation>
     </message>

@@ -17,6 +17,9 @@ XmlListModel {
     XmlRole { name: "monstatus";   query: "monitor/number()"; isKey: true}
     XmlRole { name: "monmode";     query: "monitormode/number()"; isKey: true}
     XmlRole { name: "collected";   query: "collected_sec/number()"; isKey: true }
+    XmlRole { name: "everytype";   query: "every/type/number()"}
+    XmlRole { name: "everycnt";   query: "every/counter/number()"}
+    XmlRole { name: "everynum";   query: "every/numbercounter/number()"}
     /*
     onStatusChanged: {
         if (status === XmlListModel.Ready) {

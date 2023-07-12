@@ -11,7 +11,15 @@
 <context>
     <name>MonitorDelegate</name>
     <message>
-        <source>checked %1</source>
+        <source>up %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>last %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>no output</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -43,6 +51,10 @@
     </message>
     <message>
         <source>Restart Service</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open Details</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -48,6 +48,23 @@ ListItem { id: root
         monitoring: (monstatuses[monstatus] === 'monitored')
         running:  (monstatuses[monstatus] === 'monitored')
     }
+    onClicked: {
+        xhri.xhr(moniturl +"/" + name, "GET", false, function(r) {showDetails(r)})
+    }
+    function showDetails(r){
+        pageStack.push(detailsPage, { text: r, title: name })
+    }
+    Component { id: detailsPage
+        Dialog { id: dlg
+            property string title
+            property string text
+            Column { width: parent.width
+                //DialogHeader { title: dlg.title }
+
+                HTMLLabel { text: dlg.text; width: parent.width }
+            }
+        }
+    }
     // Odd/even marking:
     property color evenColor: "transparent"
     property color oddColor: Theme.highlightBackgroundColor
@@ -117,7 +134,7 @@ ListItem { id: root
         anchors.left: indicators.right
         width: parent.width - (indicators.width)
         height: details.height
-        Loader { id: details; width: parent.width}
+        Loader { id: details; width: parent.width ; active: monitored }
     }
     Component { id: procdetails; Grid {
         columns: isLandscape ? 5 : 3
@@ -131,11 +148,10 @@ ListItem { id: root
 
     }}
     Component { id: progdetails; Grid {
-        columns: isLandscape ? 5 : 2
+        columns: isLandscape ? 3 : 2
         property int cell: width /  columns
-        MonitorLabel { text: progout }
-        MonitorLabel { text: qsTr("checked %1").arg(Format.formatDate( new Date(proglast*1000), Formatter.DurationElapsedShort)) }
-        MonitorLabel { text: "" }
+        MonitorLabel { text: qsTr("last %1").arg(Format.formatDate( new Date(proglast*1000), Formatter.DurationElapsed)) }
+        MonitorLabel { text: progout ? progout : qsTr("no output"); truncationMode: TruncationMode.Fade }
         MonitorLabel { text: progstatus }
     }}
     Component { id: netdetails; Grid {

@@ -277,9 +277,9 @@ ApplicationWindow {
     }
 
     property string xmldata
-    XHRItem { id: x; property bool busy }
+    XHRItem { id: xhri; property bool busy }
     function getData() {
-        x.xhr(xmlurl, "GET", false, function(r) { xmldata = r; })
+        xhri.xhr(xmlurl, "GET", false, function(r) { xmldata = r; })
     }
 
     // application settings:
