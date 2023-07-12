@@ -72,40 +72,6 @@ Links:
 %endif
 
 
-%package contrib
-Summary:    Community contributions for %{name}
-Group:      Applications
-Version:    1.0
-BuildArch:  noarch
-Requires:   %{name}
-Provides:   %{name}-contrib = 5.34.0
-Obsoletes:  %{name}-contrib <= 5.34.0+git10
-
-%description contrib
-%{summary}.
-
-Configurations and scripts for Monit, created by the community.
-
-Please submit your own scripts and config snippets to the packaging
-repo so we can enhance the contrib package together.
-
-%if "%{?vendor}" == "chum"
-Title: Monit Community Configs
-Type: console-application
-PackagedBy: nephros
-Categories:
- - System
- - Monitor
-Custom:
-  Repo: https://github.com/nephros/monit/
-PackageIcon: https://mmonit.com/monit/img/logo.png
-Links:
-  Homepage: https://github.com/nephros/monit/tree/master/contrib
-  Help: https://mmonit.com/wiki/Monit/ConfigurationExamples
-  Bugtracker: https://github.com/nephros/monit/issues
-%endif
-
-
 %prep
 %setup -q -n %{name}-%{version}/monit
 
@@ -158,10 +124,6 @@ install -m 644 -D ../icons/Logo/Monit-Logo-20x20@1x.png %{buildroot}%{_datadir}/
 install -m 644 -D ../icons/Logo/Monit-Logo-40x40@3x.png     %{buildroot}%{_datadir}/icons/hicolor/128x128/apps/%{name}-logo.png
 install -m 644 -D ../icons/Logo/Monit-Logo-83.5x83.5@2x.png %{buildroot}%{_datadir}/icons/hicolor/172x172/apps/%{name}-logo.png
 install -m 644 -D ../icons/Logo/Monit-Logo-512x512@2x.png   %{buildroot}%{_datadir}/icons/hicolor/1024x1024/apps/%{name}-logo.png
-
-# install -contrib parts
-pushd ../contrib
-%make_install
 # << install post
 
 desktop-file-install --delete-original       \
@@ -195,13 +157,3 @@ desktop-file-install --delete-original       \
 %dir %{_sysconfdir}/%{name}.d
 # >> files
 # << files
-
-%files contrib
-%defattr(-,root,root,-)
-%config %{_sysconfdir}/%{name}.d/README.md
-%dir %{_sysconfdir}/%{name}.d/scripts
-%dir %{_sysconfdir}/%{name}.d/available
-%config %{_sysconfdir}/%{name}.d/available/*.conf
-%config %attr(750,root,root) %{_sysconfdir}/%{name}.d/scripts/*
-# >> files contrib
-# << files contrib
