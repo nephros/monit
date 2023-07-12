@@ -44,10 +44,13 @@ ListItem { id: root
     state: types[model.type]
     //onStateChanged: console.debug("State changed to", state, "for", name, "of type", model.type + " (" + types[model.type] + ")")
 
+    // Context Menu
     menu: MonitorMenu {
         monitoring: (monstatuses[monstatus] === 'monitored')
         running:  (monstatuses[monstatus] === 'monitored')
     }
+
+    // Show details on click
     onClicked: {
         xhri.xhr(moniturl +"/" + name, "GET", false, function(r) {showDetails(r)})
     }
