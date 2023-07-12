@@ -95,10 +95,16 @@ Files:
 
 SubPackages:
     - Name:  contrib
+      Version: 1.0
       Summary: Community contributions for %{name}
       Group: Applications
       BuildArch: noarch
       AutoDepend: false
+      # legacy: the first release package did not have its own version
+      Obsoletes:
+        - '%{name}-contrib <= 5.34.0+git10'
+      Provides:
+        - '%{name}-contrib = 5.34.0'
       Requires:
         - '%{name}'
       Description: |

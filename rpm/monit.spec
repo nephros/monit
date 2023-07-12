@@ -75,8 +75,11 @@ Links:
 %package contrib
 Summary:    Community contributions for %{name}
 Group:      Applications
+Version:    1.0
 BuildArch:  noarch
 Requires:   %{name}
+Provides:   %{name}-contrib = 5.34.0
+Obsoletes:  %{name}-contrib <= 5.34.0+git10
 
 %description contrib
 %{summary}.
