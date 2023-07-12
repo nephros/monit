@@ -122,7 +122,7 @@ ListItem { id: root
     Component { id: procdetails; Grid {
         columns: isLandscape ? 5 : 3
         property int cell: width /  columns
-        MonitorLabel {text: Format.formatDuration(procup, Formatter.DurationElapsed) }
+        MonitorLabel {text: qsTr("up %1").arg(Format.formatDuration( procup,Formatter.Timepoint)) }
         MonitorLabel {text: 'cpu %1%'.arg(proccpu) }
         MonitorLabel {text: 'mem %1%'.arg(procmem) }
         //MonitorLabel {text: Format.formatFileSize(Math.floor(read_total)) }
