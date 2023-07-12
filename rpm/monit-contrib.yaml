@@ -1,0 +1,58 @@
+Name: monit-contrib
+Summary: Community contributions for Monit
+Version: 1.0
+Release: 0
+Group: Applications
+License: AGPLv3+
+URL: https://github.com/nephros/monit/
+SCM: https://github.com/nephros/monit/
+Sources:
+    - '%{name}-%{version}.tar.gz'
+Description: |
+      %{summary}.
+
+      Configurations and scripts for Monit, created by the community.
+
+      Please submit your own scripts and config snippets to the packaging
+      repo so we can enhance the contrib package together.
+
+      %if "%{?vendor}" == "chum"
+      Title: Monit Community Configs
+      Type: console-application
+      PackagedBy: nephros
+      Categories:
+       - System
+       - Monitor
+      Custom:
+        Repo: https://github.com/nephros/monit/
+      PackageIcon: https://mmonit.com/monit/img/logo.png
+      Links:
+        Homepage: https://github.com/nephros/monit/tree/contrib/
+        Help: https://mmonit.com/wiki/Monit/ConfigurationExamples
+        Bugtracker: https://github.com/nephros/monit/issues
+      %endif
+
+SetupOptions: -q -n %{name}-%{version}/monit
+RpmLintIgnore:
+  - 'summary-too-long'
+  - 'no-changelogname-tag'
+  - 'invalid-url'
+Configure: none
+Builder: none
+BuildArch: noarch
+PkgBR:
+  - make
+# legacy: the first release package did not have its own version
+Obsoletes:
+  - '%{name} <= 5.34.0+git10'
+Provides:
+  - '%{name} = 5.34.0'
+Requires:
+  - 'monit'
+Files:
+   - '%config %{_sysconfdir}/monit.d/README.md'
+   - '%dir %{_sysconfdir}/monit.d/scripts'
+   - '%dir %{_sysconfdir}/monit.d/available'
+   - '%config %{_sysconfdir}/monit.d/available/*.conf'
+   - '%config %attr(750,root,root) %{_sysconfdir}/monit.d/scripts/*'
+
