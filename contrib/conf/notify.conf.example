@@ -1,0 +1,11 @@
+#check foo
+#    if failed bar then
+#      exec '/etc/monit.d/scripts/notify-sfos.sh "Alert!" "something happened!"'   as uid "nemo" and gid "nemo"
+#      exec '/etc/monit.d/scripts/notify-sfos.sh "Alert!" "something happened!"'   as uid "defaultuser" and gid "defaultuser"
+#      repeat every 5 cycles
+
+#check foo
+#    if failed bar then
+#      exec '/etc/monit.d/scripts/notify-telegram.sh "Alert!"' as uid "nemo" and gid "nemo"
+#      exec '/etc/monit.d/scripts/notify-telegram.sh "Alert!"' as uid "defaultuser" and gid "defaultuser"
+#      repeat every 5 cycles
