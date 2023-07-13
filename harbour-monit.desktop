@@ -3,17 +3,17 @@ Type=Application
 Icon=harbour-monit
 X-Nemo-Application-Type=silica-qt5
 Exec=sailfish-qml harbour-monit
-Name=Monit
+Name=Embark
 
-#X-Maemo-Service=org.nephros.sailfish.Monit
-#X-Maemo-Object-Path=/org/nephros/sailfish/Monit
-#X-Maemo-Method=org.nephros.sailfish.Monit.openUrl
+#X-Maemo-Service=org.nephros.sailfish.Embark
+#X-Maemo-Object-Path=/org/nephros/sailfish/Embark
+#X-Maemo-Method=org.nephros.sailfish.Embark.openUrl
 
 [X-Sailjail]
-ApplicationName=Monit
+ApplicationName=Embark
 OrganizationName=org.nephros.sailfish
 Permissions=Internet
 
 [X-HarbourBackup]
-BackupConfigList=/org/nephros/Monit
-#BackupPathList=.local/share/org.nephros.sailfish/Monit/
+BackupConfigList=/org/nephros/Embark
+#BackupPathList=.local/share/org.nephros.sailfish/Embark/

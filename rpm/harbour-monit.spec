@@ -33,17 +33,15 @@ Monit is a small Open Source utility for managing and monitoring Unix
 systems. Monit conducts automatic maintenance and repair and can execute
 meaningful causal actions in error situations.
 
-This is a simple Sailfish OS GUI application to view the status of the daemon.
+This is a simple Sailfish OS GUI application to view the status of the
+daemon.
 
 %if "%{?vendor}" == "chum"
-Title: Monit GUI
+Title: Embark Monit GUI
 Type: desktop-application
-PackagedBy: nephros
 Categories:
- - System
  - Monitor
 Custom:
-  PackagingRepo: https://github.com/nephros/monit
   Repo: https://github.com/nephros/monit
 PackageIcon: %{url}/app/icons/%{name}.svg
 Screenshots:
