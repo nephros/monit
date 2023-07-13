@@ -124,6 +124,7 @@ ListItem { id: root
         }
     }
     Label {
+        visible: Qt.application.version == "unreleased"
         anchors.horizontalCenter: indicators.horizontalCenter
         anchors.bottom: parent.bottom
         width: indicators.width
