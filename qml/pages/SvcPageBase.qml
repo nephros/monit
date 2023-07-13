@@ -21,7 +21,7 @@ Page { id: page
         }
     }
     property string title: qsTr("Monit Service Manager %1").arg(dbus.activeState)
-    property string subtitle
+    property string subtitle: ""
     property string footer:  qsTr("Last updated: %1, next update: %2").arg(
         Format.formatDate(refreshed,Formatter.DurationElapsed)).arg(
         Format.formatDate(new Date(Date.now()+polling*1000),Formatter.TimepointRelative)
@@ -45,7 +45,7 @@ Page { id: page
             add:      Transition { FadeAnimation { duration: 1200 } }
             move:     Transition { FadeAnimation { duration: 1200 } }
             populate: Transition { FadeAnimation { duration: 1200 } }
-            PageHeader { id: head ; title: page.title; description: footer }
+            PageHeader { id: head ; title: page.title; description: subtitle }
             SectionHeader { text: qsTr("Monit Daemon"); visible: monit.visible}
             Grid { id: monit
                 visible: (!!!page.objectName) // the "first" page has no object name
