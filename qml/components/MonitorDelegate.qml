@@ -183,21 +183,13 @@ ListItem { id: root
     }}
     Component { id: fsdetails; Grid {
         columns: isLandscape ? 5 : 4
-        /*
-        function group(id) { return user(id) }
-        function user(id) {
-            if (id === 0) return "root";
-            if (id === 1000000) return "nemo";
-            return "ID" + id
-        }
-        */
         property int cell: width /  columns
         MonitorLabel { text: fstype}
         //MonitorLabel { text: fsflags}
         //MonitorLabel { text: fsmode + '/' + fsuid + '/' + fsgid }
         //MonitorLabel { text: !!fsmode ? Unix.octal2string(fsmode, "d") : "-" }
-        //MonitorLabel { text: user(fsuid) + '/' + group(fsgid) }
-        //MonitorLabel { text: Unix.octal2string(fsmode, "d") + " " + user(fsuid) + '/' + group(fsgid) }
+        //MonitorLabel { text: getUser(fsuid) + '/' + getGroup(fsgid) }
+        //MonitorLabel { text: Unix.octal2string(fsmode, "d") + " " + getUser(fsuid) + '/' + getGroup(fsgid) }
         //MonitorLabel { text: 'kB: %1/%2 (%3%)'.arg(fs_bl_usage).arg(fs_bl_total).arg(fs_bl_percent) }
         //MonitorLabel { text: ' i: %1/%2 (%3%)'.arg(fs_in_usage).arg(fs_in_total).arg(fs_in_percent) }
         MonitorLabel { text: 'used: %1% (%2)'.arg(fs_bl_percent).arg(Format.formatFileSize(Math.floor(fs_bl_usage*1024*1024))) }
@@ -208,32 +200,16 @@ ListItem { id: root
     }}
     Component { id: dirdetails; Grid {
         columns: 2
-        function group(id) { return user(id) }
-        function user(id) {
-            if (id === 0) return "root";
-            if (id === 1000000) return "nemo";
-            return "ID" + id
-        }
         property int cell: width /  columns
-        //MonitorLabel { text: Unix.octal2string(mode, "d") + " " + user(uid) + '/' + group(gid) }
         MonitorLabel { text: !!mode ? Unix.octal2string(mode, "d") : "-" }
-        MonitorLabel { text: user(uid) + '/' + group(gid) }
-        //MonitorLabel { text: Unix.octal2string(fsmode, "d") + " " + user(fsuid) + '/' + group(fsgid) }
+        MonitorLabel { text: getUser(uid) + '/' + getGroup(gid) }
     }}
     Component { id: filedetails; Grid {
         columns:  3
-        function group(id) { return user(id) }
-        function user(id) {
-            if (id === 0) return "root";
-            if (id === 1000000) return "nemo";
-            return "ID" + id
-        }
         property int cell: width /  columns
         MonitorLabel {text: Format.formatFileSize(Math.floor(size)) }
-        //MonitorLabel { text: Unix.octal2string(mode, "d") + " " + user(uid) + '/' + group(gid) }
         MonitorLabel { text: !!mode ? Unix.octal2string(mode, "d") : "-" }
-        MonitorLabel { text: user(uid) + '/' + group(gid) }
-        //MonitorLabel { text: Unix.octal2string(fsmode, "d") + " " + user(fsuid) + '/' + group(fsgid) }
+        MonitorLabel { text: getUser(uid) + '/' + getGroup(gid) }
     }}
 }
 

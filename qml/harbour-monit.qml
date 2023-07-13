@@ -285,16 +285,29 @@ ApplicationWindow {
         Qt.application.version = "unreleased";
         console.info("Intialized", Qt.application.name, "version", Qt.application.version, "by", Qt.application.organization );
         console.debug("Parameters: " + Qt.application.arguments.join(" "))
+        getGroups()
         getData()
     }
 
     property string xmldata
     XHRItem { id: xhri; property bool busy }
-    Component { id:userInfo; UserInfo { } }
+    Component { id: userInfo; UserInfo { } }
+    function getGroup(gid) {
+        if (groupInfo === null) { getGroups(); return '-' }
+        for (var l in groupInfo.split('\n')) {
+            var d = l.split(':');
+            if (d[2] === gid) return d[0];
+        }
+        return 'unknown'
+    }
     function getUser(uid) {
         var ui = userInfo.createObject(null, { uid: uid, watched: false})
         //return ui.displayName
         return ui.username
+    }
+    property var groupInfo: null
+    function getGroups() {
+        xhri.xhr('file:///etc/group', "GET", false, function(r) {  groupInfo = r; })
     }
     function getData() {
         xhri.xhr(xmlurl, "GET", false, function(r) { refreshed = new Date(Date.now()); xmldata = r; })
