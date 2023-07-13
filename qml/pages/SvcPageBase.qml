@@ -104,6 +104,9 @@ Page { id: page
                             if  ((modelData == "memory") || (modelData == "swap")) {
                                 return Math.floor(systemdata[modelData]/1024)+'MB'
                             }
+                            if  (/^CPU/.test(modelData) || /^load/.test(modelData) ||  /%$/.test(modelData)) {
+                                return systemdata[modelData].toFixed(2)
+                            }
                             return systemdata[modelData]
                         }
                     }
