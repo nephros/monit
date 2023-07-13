@@ -39,7 +39,10 @@ RpmLintIgnore:
   - 'invalid-url'
 #Patches:
 #
-#Macros:
+Macros:
+  # do not let the scanner pick up Opal:
+  - '__provides_exclude_from;qml/external'
+  # '__requires_exclude;qml(XmlListModel)'
 #  - |
 #    spectacle_bug; hack_fix
 #    %if 0%{?sailfishos_version} > 40300
@@ -49,6 +52,8 @@ Requires:
   # monit >= 5.24.0
   - monit
   - libsailfishapp-launcher
+  - qml(Nemo.Mce)
+  - qml(QtQuick.XmlListModel)
 PkgBR:
   - qt5-qttools-linguist
   - qt5-qmake

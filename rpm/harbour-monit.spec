@@ -7,6 +7,7 @@ Name:       harbour-monit
 
 # >> macros
 # << macros
+%define __provides_exclude_from qml/external
 
 Summary:    Sailfish OS GUI for monit
 Version:    0.9.5
@@ -20,6 +21,9 @@ Source100:  harbour-monit.yaml
 Source101:  harbour-monit-rpmlintrc
 Requires:   monit
 Requires:   libsailfishapp-launcher
+Requires:   qt5-qtdeclarative-import-xmllistmodel
+Requires:   qml(Nemo.Mce)
+Requires:   qml(QtQuick.XmlListModel)
 BuildRequires:  qt5-qttools-linguist
 BuildRequires:  qt5-qmake
 BuildRequires:  sailfish-svg2png
