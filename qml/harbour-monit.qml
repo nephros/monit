@@ -294,9 +294,11 @@ ApplicationWindow {
     Component { id: userInfo; UserInfo { } }
     function getGroup(gid) {
         if (groupInfo === null) { getGroups(); return '-' }
-        for (var l in groupInfo.split('\n')) {
-            var d = l.split(':');
-            if (d[2] === gid) return d[0];
+        //var gi = groupInfo.split('\n');
+        for (var i=0; i<groupInfo.length; ++i) {
+            var d = groupInfo[i].split(':');
+            console.debug("looking for", gid, " in :", d[2]);
+            if (d[2] == gid) return d[0];
         }
         return 'unknown'
     }
@@ -307,7 +309,7 @@ ApplicationWindow {
     }
     property var groupInfo: null
     function getGroups() {
-        xhri.xhr('file:///etc/group', "GET", false, function(r) {  groupInfo = r; })
+        xhri.xhr('file:///etc/group', "GET", false, function(r) {  groupInfo = r.split('\n');})
     }
     function getData() {
         xhri.xhr(xmlurl, "GET", false, function(r) { refreshed = new Date(Date.now()); xmldata = r; })
