@@ -25,7 +25,6 @@ import Sailfish.Silica 1.0
 import Nemo.Configuration 1.0
 import Nemo.Mce 1.0      // power saving mode
 import Nemo.DBus 2.0;
-import org.nemomobile.systemsettings 1.0
 import "pages"
 import "cover"
 import "components/xhr"
@@ -285,29 +284,35 @@ ApplicationWindow {
         Qt.application.version = "unreleased";
         console.info("Intialized", Qt.application.name, "version", Qt.application.version, "by", Qt.application.organization );
         console.debug("Parameters: " + Qt.application.arguments.join(" "))
+        getPasswd()
         getGroups()
         getData()
     }
 
     property string xmldata
     XHRItem { id: xhri; property bool busy }
-    Component { id: userInfo; UserInfo { } }
     function getGroup(gid) {
         if (groupInfo === null) { getGroups(); return '-' }
         //var gi = groupInfo.split('\n');
         for (var i=0; i<groupInfo.length; ++i) {
             var d = groupInfo[i].split(':');
-            console.debug("looking for", gid, " in :", d[2]);
             if (d[2] == gid) return d[0];
         }
         return 'unknown'
     }
+    property var userInfo: null
     function getUser(uid) {
-        var ui = userInfo.createObject(null, { uid: uid, watched: false})
-        //return ui.displayName
-        return ui.username
+        if (userInfo === null) { getPasswd(); return '-' }
+        for (var i=0; i<userInfo.length; ++i) {
+            var d = userInfo[i].split(':');
+            if (d[2] == uid) return d[0];
+        }
+        return 'unknown'
     }
     property var groupInfo: null
+    function getPasswd() {
+        xhri.xhr('file:///etc/passwd', "GET", false, function(r) {  userInfo = r.split('\n');})
+    }
     function getGroups() {
         xhri.xhr('file:///etc/group', "GET", false, function(r) {  groupInfo = r.split('\n');})
     }
