@@ -142,6 +142,11 @@ ListItem { id: root
     Component { id: procdetails; Grid {
         columns: isLandscape ? 5 : 3
         property int cell: width /  columns
+        MonitorLabel {text: 'PID %1'.arg(pid) }
+        MonitorLabel {text: (uid === euid)
+                ? 'User %1'.arg(getUser(uid))
+                : 'User %1(%2)'.arg(getUser(euid)).arg(getUser(uid))
+        }
         MonitorLabel {text: qsTr("up %1").arg(Format.formatDuration( procup,Formatter.Timepoint)) }
         MonitorLabel {text: 'cpu %1%'.arg(proccpu) }
         MonitorLabel {text: 'mem %1%'.arg(procmem) }

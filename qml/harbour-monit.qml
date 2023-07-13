@@ -25,6 +25,7 @@ import Sailfish.Silica 1.0
 import Nemo.Configuration 1.0
 import Nemo.Mce 1.0      // power saving mode
 import Nemo.DBus 2.0;
+import org.nemomobile.systemsettings 1.0
 import "pages"
 import "cover"
 import "components/xhr"
@@ -159,6 +160,10 @@ ApplicationWindow {
         XmlRole { name: "read_total";  query: "read/bytes/total/number()" }
         XmlRole { name: "write_total"; query: "write/bytes/total/number()" }
         //process
+        XmlRole { name: "pid";    query: "pid/number()" }
+        XmlRole { name: "ppid";    query: "ppid/number()" }
+        XmlRole { name: "uid";    query: "uid/number()" }
+        XmlRole { name: "euid";    query: "euid/number()" }
         XmlRole { name: "procup";    query: "uptime/number()" }
         XmlRole { name: "proccpu";   query: "cpu/percenttotal/number()" }
         XmlRole { name: "procmem";   query: "memory/percenttotal/number()" }
@@ -285,6 +290,12 @@ ApplicationWindow {
 
     property string xmldata
     XHRItem { id: xhri; property bool busy }
+    Component { id:userInfo; UserInfo { } }
+    function getUser(uid) {
+        var ui = userInfo.createObject(null, { uid: uid, watched: false})
+        //return ui.displayName
+        return ui.username
+    }
     function getData() {
         xhri.xhr(xmlurl, "GET", false, function(r) { refreshed = new Date(Date.now()); xmldata = r; })
     }
