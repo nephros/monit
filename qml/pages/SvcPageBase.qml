@@ -21,7 +21,11 @@ Page { id: page
         }
     }
     property string title: qsTr("Monit Service Manager %1").arg(dbus.activeState)
-    property string subtitle: qsTr("Target")
+    property string subtitle
+    property string footer:  qsTr("Last updated: %1, next update: %2").arg(
+        Format.formatDate(refreshed,Formatter.DurationElapsed)).arg(
+        Format.formatDate(new Date(Date.now()+polling*1000),Formatter.TimepointRelative)
+        )
     property XmlListModel model
     property Component delegate: MonitorDelegate{}
 
@@ -41,7 +45,7 @@ Page { id: page
             add:      Transition { FadeAnimation { duration: 1200 } }
             move:     Transition { FadeAnimation { duration: 1200 } }
             populate: Transition { FadeAnimation { duration: 1200 } }
-            PageHeader { id: head ; title: page.title }
+            PageHeader { id: head ; title: page.title; description: footer }
             SectionHeader { text: qsTr("Monit Daemon"); visible: monit.visible}
             Grid { id: monit
                 visible: (!!!page.objectName) // the "first" page has no object name
@@ -106,12 +110,18 @@ Page { id: page
                 }
             }
             SilicaListView { id: svcview
+                visible: (!!page.objectName) // the "first" page has no object name
                 height: page.height - (head.height + platform.height)
                 //width: isLandscape ? parent.width : parent.width*2
-                width:  parent.width 
+                width:  parent.width
                 spacing: Theme.paddingMedium
                 model: page.model
                 delegate: page.delegate
+            }
+            Label {
+                text: footer
+                font.pixelSize: Theme.fontSizeTiny
+                color: Theme.secondaryColor
             }
         }
         ViewPlaceholder {

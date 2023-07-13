@@ -23,7 +23,7 @@ import QtQuick 2.6
 import QtQuick.XmlListModel 2.0
 import Sailfish.Silica 1.0
 import Nemo.Configuration 1.0
-//import Nemo.Mce 1.0      // power saving mode
+import Nemo.Mce 1.0      // power saving mode
 import Nemo.DBus 2.0;
 import "pages"
 import "cover"
@@ -35,7 +35,7 @@ ApplicationWindow {
 
     allowedOrientations: Orientation.All
 
-    //property alias powersaving: powerSaveMode.active
+    property alias powersaving: powerSaveMode.active
 
     /* **** CONSTANTS ***** */
 
@@ -102,6 +102,14 @@ ApplicationWindow {
     property var platformdata
     property var monitdata
     property var systemdata
+    // seconds make cycle
+    //property int polling: (!!monitdata && !!monitdata["poll"]) ? monitdata["poll"] : 0
+    property int polling: 0
+    Timer { id: refreshTimer
+        interval: (!!polling && (polling > 0)) ? polling*1000 : 300*1000
+        onTriggered: { console.info("Refrehed.") ; getData() }
+    }
+    property date refreshed
     XmlListModel { id: platformmodel
         //source: "http://app:secret@127.0.0.1:2812/_status?format=xml"
         //source: xmlurl
@@ -138,6 +146,7 @@ ApplicationWindow {
             if (status === XmlListModel.Ready) {
                 console.info("Monit model loaded.")
                 monitdata = monitmodel.get(0);
+                polling = (!!monitdata["poll"] ) ? monitdata["poll"] : 0
             }
         }
     }
@@ -254,18 +263,16 @@ ApplicationWindow {
     //signal willQuit()
     //Connections { target: __quickWindow; onClosing: willQuit() }
 
-    /*
     // Application goes into background or returns to active focus again
     onApplicationActiveChanged: {
         if (applicationActive) {
+            if (!powersaving) { refreshTimer.start() }
         } else {
+            refreshTimer.stop()
         }
     }
-    */
 
-    /*
      McePowerSaveMode { id: powerSaveMode }
-    */
 
     Component.onCompleted: {
         // for sailjail
@@ -279,7 +286,7 @@ ApplicationWindow {
     property string xmldata
     XHRItem { id: xhri; property bool busy }
     function getData() {
-        xhri.xhr(xmlurl, "GET", false, function(r) { xmldata = r; })
+        xhri.xhr(xmlurl, "GET", false, function(r) { refreshed = new Date(Date.now()); xmldata = r; })
     }
 
     // application settings:
