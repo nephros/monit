@@ -10,7 +10,7 @@ import "../js/unix.js" as Unix
 ListItem { id: root
 
     width: ListView.view.width
-    contentHeight: content.height
+    contentHeight: Math.max(Theme.itemSizeExtraSmall, content.height)
 
     property bool monitored: monstatus > 0
     property bool ok: (svcstatuses[svcstatus] === 'succeeded')
@@ -147,6 +147,7 @@ ListItem { id: root
     }
     Row { id: content
         anchors.top: parent.top
+        //anchors.verticalCenter: parent.verticalCenter
         anchors.left: indicators.right
         width: parent.width - (indicators.width)
         height: details.height
