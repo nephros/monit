@@ -41,7 +41,6 @@ Page { id: page
         modal: true
         animationDuration: 250
     }
-
     SilicaFlickable {
         id: flick
         anchors.fill: parent
@@ -75,6 +74,20 @@ Page { id: page
                                 return monitdata[modelData]+'s'
                            }
                            return monitdata[modelData]
+                        }
+                        BackgroundItem {
+                            anchors.fill: parent
+                            visible: monit.visible
+                            // Show details on click
+                            onClicked: {
+                                xhri.xhr(moniturl +"/_runtime", "GET", false, function(r) {showDetails(r)})
+                            }
+
+                            function showDetails(r){
+                                detailsPanel.text = r
+                                detailsPanel.title = qsTr("System")
+                                detailsPanel.show()
+                            }
                         }
                     }
                 }
@@ -119,6 +132,20 @@ Page { id: page
                                 return systemdata[modelData].toFixed(2)
                             }
                             return systemdata[modelData]
+                        }
+                        BackgroundItem {
+                            anchors.fill: parent
+                            visible: system.visible
+                            // Show details on click
+                            onClicked: {
+                                xhri.xhr(moniturl +"/" + systemdata.name, "GET", false, function(r) {showDetails(r)})
+                            }
+
+                            function showDetails(r){
+                                detailsPanel.text = r
+                                detailsPanel.title = qsTr("System")
+                                detailsPanel.show()
+                            }
                         }
                     }
                 }

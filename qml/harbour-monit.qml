@@ -224,6 +224,7 @@ ApplicationWindow {
         objectName: "sys"
         query: '/monit/service[@type=5]'
         xml: xmldata
+        XmlRole { name: "name";        query: "name/string()" }
         //XmlRole { name: "FD alloc";   query: "filedescriptors/allocated/number()" }
         //XmlRole { name: "FD max";   query: "filedescriptors/maximum/number()" }
         XmlRole { name: "load 1";     query: "system/load/avg01/number()" }
