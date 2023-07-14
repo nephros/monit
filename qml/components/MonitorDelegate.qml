@@ -43,7 +43,7 @@ ListItem { id: root
     ]
     state: types[model.type]
     onStateChanged: {
-        console.debug("State changed to", state, "for", name, "of type", model.type + " (" + types[model.type] + ")")
+        //console.debug("State changed to", state, "for", name, "of type", model.type + " (" + types[model.type] + ")")
         if (state !== "") {
             xhri.xhr(moniturl +"/" + name, "GET", false, function(r) {getToken(r) })
         }
@@ -69,14 +69,14 @@ ListItem { id: root
     //extract security token for actions:
     property string token
     function getToken(content) {
-        console.debug('looking for token in', content);
+        //console.debug('looking for token in', content);
         const sec = /name='securitytoken' value='([^']{32})/.exec(content);
         if (sec) {
             //console.debug('Got Token(s):', JSON.stringify(sec))
-            console.debug('Got %1 Token(s).'.arg(sec.length-1))
+            //console.debug('Got %1 Token(s).'.arg(sec.length-1))
             token = sec[1];
         } else {
-            console.debug('No Token(s)')
+            //console.debug('No Token(s)')
         }
     }
 

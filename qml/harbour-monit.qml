@@ -125,7 +125,7 @@ ApplicationWindow {
         XmlRole { name: "swap"; query: "swap/number()" }
         onStatusChanged: {
             if (status === XmlListModel.Ready) {
-                console.info("Platform model loaded.")
+                //console.info("Platform model loaded.")
                 platformdata = platformmodel.get(0);
             }
         }
@@ -145,7 +145,7 @@ ApplicationWindow {
         XmlRole { name: "webssl"; query: "httpd/ssl/number()" }
         onStatusChanged: {
             if (status === XmlListModel.Ready) {
-                console.info("Monit model loaded.")
+                //console.info("Monit model loaded.")
                 monitdata = monitmodel.get(0);
                 polling = (!!monitdata["poll"] ) ? monitdata["poll"] : 0
             }
@@ -239,7 +239,7 @@ ApplicationWindow {
         XmlRole { name: "Swap kB";    query: "system/swap/kilobyte/number()" }
         onStatusChanged: {
             if (status === XmlListModel.Ready) {
-                console.info("System model loaded.")
+                //console.info("System model loaded.")
                 systemdata = sysmodel.get(0);
             }
         }

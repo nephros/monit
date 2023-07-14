@@ -36,7 +36,7 @@ Text { id: root
             /#ddd/gim, '' + Theme.highlightDimmerFromColor(Theme.secondaryHightlightColor, Theme.colorScheme)
         )
         text = newtext;
-        console.debug("mangled:", newtext);
+        //console.debug("mangled:", newtext);
     }
     baseUrl:          moniturl
     linkColor:        Theme.darkSecondaryColor
