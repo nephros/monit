@@ -55,21 +55,11 @@ ListItem { id: root
         xhri.xhr(moniturl +"/" + name, "GET", false, function(r) {showDetails(r)})
     }
     function showDetails(r){
-        pageStack.push(detailsPage, { text: r, title: name })
+        detailsPanel.text = r
+        detailsPanel.title = name
+        detailsPanel.show()
     }
-    Component { id: detailsPage
-        Page { id: dpage
-            property string title
-            property string text
-            SilicaFlickable {anchors.fill: parent
-                contentHeight: col.height
-                Column { id:col; width: parent.width
-                    //DialogHeader { title: dlg.title }
-                    HTMLLabel { content: dpage.text ; width: parent.width }
-                }
-            }
-        }
-    }
+
     // Odd/even marking:
     property color evenColor: "transparent"
     property color oddColor: Theme.highlightBackgroundColor

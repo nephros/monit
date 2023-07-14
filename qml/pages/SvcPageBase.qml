@@ -31,6 +31,16 @@ Page { id: page
 
     //Component.onCompleted: console.debug("Loaded page", objectName)
 
+    canNavigateForward: !detailsPanel.open
+    backNavigation:     !detailsPanel.open
+    DetailsPanel { id: detailsPanel
+        dock: Dock.Bottom
+        width: parent.width
+        height: page.height - Theme.itemSizeLarge
+        modal: true
+        animationDuration: 250
+    }
+
     SilicaFlickable {
         id: flick
         anchors.fill: parent

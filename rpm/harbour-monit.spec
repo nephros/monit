@@ -21,7 +21,6 @@ Source100:  harbour-monit.yaml
 Source101:  harbour-monit-rpmlintrc
 Requires:   monit
 Requires:   libsailfishapp-launcher
-Requires:   qt5-qtdeclarative-import-xmllistmodel
 Requires:   qml(Nemo.Mce)
 Requires:   qml(QtQuick.XmlListModel)
 BuildRequires:  qt5-qttools-linguist
