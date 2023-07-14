@@ -36,7 +36,8 @@ Page { id: page
     DetailsPanel { id: detailsPanel
         dock: Dock.Bottom
         width: parent.width
-        height: page.height - Theme.itemSizeLarge*3
+        //height: page.height - (isLandscape ? Theme.itemSizeLarge : Theme.itemSizeLarge*3)
+        height: page.height *3/4
         modal: true
         animationDuration: 250
     }
