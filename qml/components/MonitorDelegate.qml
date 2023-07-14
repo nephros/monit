@@ -58,13 +58,15 @@ ListItem { id: root
         pageStack.push(detailsPage, { text: r, title: name })
     }
     Component { id: detailsPage
-        Dialog { id: dlg
+        Page { id: dpage
             property string title
             property string text
-            Column { width: parent.width
-                //DialogHeader { title: dlg.title }
-
-                HTMLLabel { text: dlg.text; width: parent.width }
+            SilicaFlickable {anchors.fill: parent
+                contentHeight: col.height
+                Column { id:col; width: parent.width
+                    //DialogHeader { title: dlg.title }
+                    HTMLLabel { content: dpage.text ; width: parent.width }
+                }
             }
         }
     }
