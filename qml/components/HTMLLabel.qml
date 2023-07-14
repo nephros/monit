@@ -35,12 +35,8 @@ Text { id: root
         ).replace(
             /#ddd/gim, '' + Theme.highlightDimmerFromColor(Theme.secondaryHightlightColor, Theme.colorScheme)
         )
-        console.debug("Mangled Content:", newtext);
         text = newtext;
-        //extract security token for actions:
-        const secre = /name='securitytoken' value='\([^']+\)'/gim
-        var sec = secre.exec(content)
-        console.debug('Got Token:', sec)
+        console.debug("mangled:", newtext);
     }
     baseUrl:          moniturl
     linkColor:        Theme.darkSecondaryColor
