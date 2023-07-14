@@ -2,6 +2,29 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="sv" sourcelanguage="en_US">
 <context>
+    <name>AboutPage</name>
+    <message>
+        <source>Monit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 is a frontend to the Monit program. See the links for more information.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Home</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Documentation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Wiki</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>LicenseListPart</name>
     <message>
         <source>License text</source>
@@ -362,10 +385,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Target</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Monit is inactive.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -382,10 +401,6 @@
         <translation type="unfinished">Inställningar</translation>
     </message>
     <message>
-        <source>Open Browser</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Refresh</source>
         <translation type="unfinished">Uppdatera</translation>
     </message>
@@ -399,6 +414,14 @@
     </message>
     <message>
         <source>Platform</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Last updated: %1, next update: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open Web Interface</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
