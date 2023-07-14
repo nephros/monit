@@ -34,7 +34,8 @@ DockedPanel { id: panel
         color: Theme.lightPrimaryColor;
         horizontalAlignment: Qt.AlignHCenter
     }
-    SilicaFlickable {anchors.fill: parent
+    SilicaFlickable {
+        anchors.fill: parent
         anchors.top:parent.top
         width: parent.width
         contentHeight: col.height

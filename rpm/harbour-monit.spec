@@ -10,7 +10,7 @@ Name:       harbour-monit
 %define __provides_exclude_from qml/external
 
 Summary:    Sailfish OS GUI for monit
-Version:    0.9.5
+Version:    0.9.6
 Release:    0
 Group:      Applications
 License:    ASL 2.0

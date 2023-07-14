@@ -20,6 +20,8 @@ QtObject { id: obj
     readonly property string dlRoot: StandardPaths.download
     readonly property string dlPath: dlRoot + "/" + Qt.application.name
 
+    property string lastError
+
     function xhr(url, type, partial, callback) {
         //if (token === "") return false;   // not without token!
         var query = Qt.resolvedUrl(url);
@@ -53,21 +55,25 @@ QtObject { id: obj
         }
     }
 
-    function xhrpost(url, type, payload, callback) {
+    function xhrpost(url, token, payload, callback) {
         //if (token === "") return false;   // not without token!
         var query = Qt.resolvedUrl(url);
         var r = new XMLHttpRequest();
-        r.open(type, query);
+        r.open("POST", query);
         r.setRequestHeader('User-Agent', userAgent)
         r.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
         //r.setRequestHeader('X-Auth-Token', token);
         //r.setRequestHeader('X-App-Client', Qt.application.name);
         //r.setRequestHeader('X-App-Version', Qt.application.version);
-        r.setRequestHeader('Accept', 'application/json');
-        r.setRequestHeader('Origin', '');
-        r.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+        //r.setRequestHeader('Accept', 'application/json');
+        //r.setRequestHeader('Origin', '');
+        //r.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+        r.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        r.setRequestHeader('Cookie', 'securitytoken=' + token +';');
+        //r.setRequestHeader('Content-Length', payload.length);
 
-        console.debug("posting:", payload);
+        r.withCredentials = true;
+        console.debug("posting:", payload, "to", url);
 
         r.send(payload);
 

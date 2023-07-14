@@ -36,7 +36,7 @@ Page { id: page
     DetailsPanel { id: detailsPanel
         dock: Dock.Bottom
         width: parent.width
-        height: page.height - Theme.itemSizeLarge
+        height: page.height - Theme.itemSizeLarge*3
         modal: true
         animationDuration: 250
     }

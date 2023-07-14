@@ -60,6 +60,7 @@ ApplicationWindow {
     }
     readonly property string moniturl: monit.proto + monit.host + ":" + monit.port
     readonly property string xmlurl: monit.proto + monit.auth + '@' + monit.host + ":" + monit.port + monit.xmluri
+    readonly property string posturl: monit.proto + monit.auth + '@' + monit.host + ":" + monit.port
 
     // see monit.h: https://bitbucket.org/tildeslash/monit/src/master/src/monit.h 
     readonly property var types: [

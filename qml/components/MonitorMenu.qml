@@ -7,11 +7,26 @@ import QtQuick 2.6
 import Sailfish.Silica 1.0
 
 ContextMenu { id: root
-    property bool monitoring: false
     property bool running: false
     property bool canControl: ((types[type] === "process") || (types[type] === "program"))
     MenuItem { text: qsTr("Open Details"); onClicked: { Qt.openUrlExternally(moniturl + '/' + name) } }
+    /*
+        <form method=POST action=MyProcessName>
+          <input type=hidden name='securitytoken' value='d5a2fe327d0dd20f5e4544e1369a3c7b'>
+          <input type=hidden value='unmonitor' name=action>
+          <input type=submit value='Disable monitoring'>
+        </form>
+    */
+    function toggleMonitor() {
+        if (!token.length > 0) { console.warn("Toggle monitoring called without token!"); return}
+        const action = monitored ? "unmonitor" : "monitor"
+        // xhrpost(url, type, payload, callback) {
+        const payload = encodeURI("securitytoken=" + token + '&' + "action=" + action)
+        //const payload = "action=" + action + '&' + "securitytoken=" + token
+        xhri.xhrpost(posturl + '/' + name , token, payload, function(r) { console.debug("Submitted:", action, "got", r) })
+    }
     MenuItem {
+        enabled: token.length > 0
         text: qsTr("%1 Monitoring").arg(!!monitored ? qsTr("Stop") : qsTr("Start"))
         onClicked: toggleMonitor()
     }

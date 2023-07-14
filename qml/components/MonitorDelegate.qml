@@ -42,11 +42,16 @@ ListItem { id: root
         }
     ]
     state: types[model.type]
-    //onStateChanged: console.debug("State changed to", state, "for", name, "of type", model.type + " (" + types[model.type] + ")")
+    onStateChanged: {
+        console.debug("State changed to", state, "for", name, "of type", model.type + " (" + types[model.type] + ")")
+        if (state !== "") {
+            xhri.xhr(moniturl +"/" + name, "GET", false, function(r) {getToken(r) })
+        }
+    }
 
     // Context Menu
     menu: MonitorMenu {
-        monitoring: (monstatuses[monstatus] === 'monitored')
+        //monitoring: (monstatuses[monstatus] === 'monitored')
         running:  (monstatuses[monstatus] === 'monitored')
     }
 
@@ -54,13 +59,28 @@ ListItem { id: root
     onClicked: {
         xhri.xhr(moniturl +"/" + name, "GET", false, function(r) {showDetails(r)})
     }
+
     function showDetails(r){
         detailsPanel.text = r
         detailsPanel.title = name
         detailsPanel.show()
     }
 
-    // Odd/even marking:
+    //extract security token for actions:
+    property string token
+    function getToken(content) {
+        console.debug('looking for token in', content);
+        const sec = /name='securitytoken' value='([^']{32})/.exec(content);
+        if (sec) {
+            //console.debug('Got Token(s):', JSON.stringify(sec))
+            console.debug('Got %1 Token(s).'.arg(sec.length-1))
+            token = sec[1];
+        } else {
+            console.debug('No Token(s)')
+        }
+    }
+
+    // Odd/even marking for delegates:
     property color evenColor: "transparent"
     property color oddColor: Theme.highlightBackgroundColor
     property bool isOdd: (index %2 != 0)
