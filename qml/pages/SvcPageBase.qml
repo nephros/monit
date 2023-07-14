@@ -145,8 +145,9 @@ Page { id: page
         PullDownMenu { id: pdp
             MenuItem { text: qsTr("About"); onClicked: { pageStack.push(Qt.resolvedUrl("AboutPage.qml")) } }
             MenuItem { text: qsTr("Settings"); onClicked: { pageStack.push(Qt.resolvedUrl("SettingsPage.qml")) } }
-            MenuItem { text: qsTr("Open Browser"); onClicked: { Qt.openUrlExternally(moniturl) } }
-            //MenuItem { text: qsTr("Refresh"); onClicked: { servicemodel.reload()} }
+            MenuItem { text: qsTr("Open Web Interface"); onClicked: { Qt.openUrlExternally(moniturl) } }
+        }
+        PushUpMenu { id: pup
             MenuItem { text: qsTr("Refresh"); onClicked: { app.getData() } }
         }
         VerticalScrollDecorator {}
