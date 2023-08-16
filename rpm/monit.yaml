@@ -25,6 +25,7 @@ Description: |
         %if "%{?vendor}" == "chum"
         Title: Monit
         Type: console-application
+        DeveloperName: Tildeslash Ltd.
         PackagedBy: nephros
         Categories:
          - System

@@ -51,6 +51,7 @@ like having a watchdog with a toolbox on your phone.
 %if "%{?vendor}" == "chum"
 Title: Monit
 Type: console-application
+DeveloperName: Tildeslash Ltd.
 PackagedBy: nephros
 Categories:
  - System
