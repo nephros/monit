@@ -22,6 +22,8 @@ QtObject { id: obj
 
     property string lastError
 
+    signal unauthorized
+
     function xhr(url, type, partial, callback) {
         //if (token === "") return false;   // not without token!
         var query = Qt.resolvedUrl(url);

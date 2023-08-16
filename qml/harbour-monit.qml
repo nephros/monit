@@ -292,7 +292,11 @@ ApplicationWindow {
     }
 
     property string xmldata
-    XHRItem { id: xhri; property bool busy }
+    XHRItem { id: xhri; property bool busy
+        onUnauthorized: {
+            pageStack.push("NeedAuthPage.qml")
+        }
+    }
     function getGroup(gid) {
         if (groupInfo === null) { getGroups(); return '-' }
         //var gi = groupInfo.split('\n');

@@ -9,7 +9,7 @@ import QtQuick 2.6
 import Sailfish.Silica 1.0
 import "../components"
 
-Page { id: settingsPage
+Dialog { id: settingsPage
 
     allowedOrientations: Orientation.All
 
@@ -23,7 +23,7 @@ Page { id: settingsPage
             bottomPadding: Theme.itemSizeLarge
             width: parent.width - Theme.horizontalPageMargin
             anchors.horizontalCenter: parent.horizontalCenter
-            PageHeader{ title: qsTr("Settings", "page title")}
+            DialogHeader{ title: qsTr("Authorization required.", "page title")}
             SectionHeader {
                 width: parent.width
                 anchors.horizontalCenter: parent.horizontalCenter
