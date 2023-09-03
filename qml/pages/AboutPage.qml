@@ -14,7 +14,7 @@ A.AboutPageBase { id: about
 
   appName: Qt.application.name
   appVersion: Qt.application.version
-  description: "%1 is a simple frontend to the Monit service monitor.\nIts name derives.from Monit's slogan, 'barking at daemons', adding a maritime twist.".arg(appName)
+  description: "%1 is a simple frontend to the Monit service monitor.\nIts name derives from Monit's slogan, 'barking at daemons', adding a maritime twist.".arg(appName)
 
   authors: "2023 Peter G. (nephros)"
   licenses: A.License { spdxId: "Apache-2.0" }
