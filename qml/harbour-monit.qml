@@ -38,6 +38,8 @@ ApplicationWindow {
 
     property alias powersaving: powerSaveMode.active
 
+    property string summary
+
     /* **** CONSTANTS ***** */
 
     // subpages, in reverse order:
@@ -57,10 +59,12 @@ ApplicationWindow {
         "host": "127.0.0.1",
         "port": "2812",
         "auth": "admin:monit",
-        "xmluri": "/_status?format=xml"
+        "xmluri": "/_status?format=xml",
+        "summary": "/_report"
     }
     readonly property string moniturl: monit.proto + monit.host + ":" + monit.port
     readonly property string xmlurl: monit.proto + monit.auth + '@' + monit.host + ":" + monit.port + monit.xmluri
+    readonly property string summaryurl: monit.proto + monit.auth + '@' + monit.host + ":" + monit.port + monit.summary
     readonly property string posturl: monit.proto + monit.auth + '@' + monit.host + ":" + monit.port
 
     // see monit.h: https://bitbucket.org/tildeslash/monit/src/master/src/monit.h 
@@ -109,7 +113,7 @@ ApplicationWindow {
     property int polling: 0
     Timer { id: refreshTimer
         interval: (!!polling && (polling > 0)) ? polling*1000 : 300*1000
-        onTriggered: { console.info("Refrehed.") ; getData() }
+        onTriggered: { console.info("Refrehed.") ; getData(); getSummary() }
     }
     property date refreshed
     XmlListModel { id: platformmodel
@@ -275,6 +279,7 @@ ApplicationWindow {
         if (applicationActive) {
             if (!powersaving) { refreshTimer.start() }
         } else {
+            if (!powersaving) { getSummary() }
             refreshTimer.stop()
         }
     }
@@ -325,6 +330,22 @@ ApplicationWindow {
     }
     function getData() {
         xhri.xhr(xmlurl, "GET", false, function(r) { refreshed = new Date(Date.now()); xmldata = r; })
+    }
+    function getSummary() {
+        xhri.xhr(summaryurl, "GET", false, function(r) {
+            var table = r.split('\n');
+            var text = '<pre>\n'
+            table.forEach(function(e){
+                var tok = e.split(/[ ]+/);
+                if (tok.length != 3) return
+                text += tok[0].replace("up", "up   ").replace("down", "down ").replace("initialising", "init ").replace("unmonitored","unmon").replace("total","\ntotal")
+                text += '\t\t' + ( (tok[1].length == 1) ? "0" + tok[1] : tok[1]);
+                if (tok[2]) text += ' ' + tok[2];
+                text += '\n';
+            });
+            text += '</pre>';
+            app.summary = text;
+        })
     }
 
     // application settings:
