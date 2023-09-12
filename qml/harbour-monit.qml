@@ -25,6 +25,7 @@ import Sailfish.Silica 1.0
 import Nemo.Configuration 1.0
 import Nemo.Mce 1.0      // power saving mode
 import Nemo.DBus 2.0;
+import io.thp.pyotherside 1.5
 import "pages"
 import "cover"
 import "components/xhr"
@@ -402,7 +403,14 @@ ApplicationWindow {
             );
         }
     }
-
+    Python { id: control
+        Component.onCompleted: {
+            addImportPath(Qt.resolvedUrl('../py'));
+            importModule("monitcontrol", [ ], function(){} )
+        }
+        function status() { call("monitcontrol.status")}
+        function cmd(cmd,parms) { call("monitcontrol.status", [cmd,parms])}
+    }
     initialPage: Component { SvcPageBase { } }
     cover: CoverPage{}
 

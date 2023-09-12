@@ -5,3 +5,4 @@ icons/*x*
 Makefile
 monit
 upstream
+py/__pycache__
