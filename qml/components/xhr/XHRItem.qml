@@ -58,7 +58,6 @@ QtObject { id: obj
     }
 
     function xhrpost(url, token, payload, callback) {
-        //if (token === "") return false;   // not without token!
         var query = Qt.resolvedUrl(url);
         var r = new XMLHttpRequest();
         r.open("POST", query);
@@ -68,10 +67,9 @@ QtObject { id: obj
         //r.setRequestHeader('X-App-Client', Qt.application.name);
         //r.setRequestHeader('X-App-Version', Qt.application.version);
         //r.setRequestHeader('Accept', 'application/json');
-        //r.setRequestHeader('Origin', '');
         //r.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
         r.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        r.setRequestHeader('Cookie', 'securitytoken=' + token +';');
+        r.setRequestHeader('Cookie', 'securitytoken=' + token); //+';');
         //r.setRequestHeader('Content-Length', payload.length);
 
         r.withCredentials = true;
@@ -85,7 +83,7 @@ QtObject { id: obj
                     var rdata = JSON.parse(r.response);
                     callback(rdata)
                 } else {
-                    console.debug("error in processing request.", r.status, r.statusText);
+                    console.debug("error in processing request.", r.status, r.statusText, r.responseText);
                     obj.lastError = r.statusText;
                 }
             busy = false;

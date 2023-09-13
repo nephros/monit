@@ -73,7 +73,7 @@ ListItem { id: root
         const sec = /name='securitytoken' value='([^']{32})/.exec(content);
         if (sec) {
             //console.debug('Got Token(s):', JSON.stringify(sec))
-            console.debug('Got %1 Token(s).'.arg(sec.length-1))
+            //console.debug('Got %1 Token(s).'.arg(sec.length-1))
             token = sec[1];
         } else {
             //console.debug('No Token(s)')

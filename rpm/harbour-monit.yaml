@@ -54,6 +54,7 @@ Requires:
   - libsailfishapp-launcher
   - qml(Nemo.Mce)
   - qml(QtQuick.XmlListModel)
+  - qml(io.thp.pyotherside)
 PkgBR:
   - qt5-qttools-linguist
   - qt5-qmake

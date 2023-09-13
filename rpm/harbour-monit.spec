@@ -23,6 +23,7 @@ Requires:   monit
 Requires:   libsailfishapp-launcher
 Requires:   qml(Nemo.Mce)
 Requires:   qml(QtQuick.XmlListModel)
+Requires:   qml(io.thp.pyotherside)
 BuildRequires:  qt5-qttools-linguist
 BuildRequires:  qt5-qmake
 BuildRequires:  sailfish-svg2png
