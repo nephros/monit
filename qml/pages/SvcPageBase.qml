@@ -159,11 +159,14 @@ Page { id: page
                 model: page.model
                 delegate: page.delegate
             }
-            Label {
-                text: footer
-                font.pixelSize: Theme.fontSizeTiny
-                color: Theme.secondaryColor
-            }
+        }
+        Label {
+            anchors.bottom: parent.bottom
+            x: Theme.horizontalPageMargin
+            anchors.margins: Theme.paddingSmall
+            text: footer
+            font.pixelSize: Theme.fontSizeTiny
+            color: Theme.secondaryColor
         }
         ViewPlaceholder {
             enabled: (dbus.activeState !== "active")
