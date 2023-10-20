@@ -1,9 +1,11 @@
 Name: monit-contrib
 Summary: Community contributions for Monit
-Version: 1.0
+# Version stays at 1.0 as long as there is no change in the layout in /etc/monit.d
+# Minor-minor version are date stamps in YYMMDDI where I is a counter
+Version: 1.0.2310201
 Release: 0
 Group: Applications
-License: AGPLv3+
+License: public domain and ASL-2.0
 URL: https://github.com/nephros/monit/
 SCM: https://github.com/nephros/monit/
 Sources:
@@ -32,13 +34,13 @@ Description: |
         Bugtracker: https://github.com/nephros/monit/issues
       %endif
 
-SetupOptions: -q -n %{name}-%{version}/monit
+SetupOptions: -q -n %{name}-%{version}/contrib
 RpmLintIgnore:
   - 'summary-too-long'
   - 'no-changelogname-tag'
   - 'invalid-url'
 Configure: none
-Builder: none
+Builder: make
 BuildArch: noarch
 PkgBR:
   - make

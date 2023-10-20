@@ -9,10 +9,10 @@ Name:       monit-contrib
 # << macros
 
 Summary:    Community contributions for Monit
-Version:    1.0
+Version:    1.0.2310201
 Release:    0
 Group:      Applications
-License:    AGPLv3+
+License:    public domain and ASL-2.0
 BuildArch:  noarch
 URL:        https://github.com/nephros/monit/
 Source0:    %{name}-%{version}.tar.gz
@@ -49,7 +49,7 @@ Links:
 
 
 %prep
-%setup -q -n %{name}-%{version}/monit
+%setup -q -n %{name}-%{version}/contrib
 
 # >> setup
 # << setup
@@ -59,6 +59,7 @@ Links:
 # << build pre
 
 
+make %{?_smp_mflags}
 
 # >> build post
 # << build post
@@ -67,6 +68,7 @@ Links:
 rm -rf %{buildroot}
 # >> install pre
 # << install pre
+%make_install
 
 # >> install post
 # install -contrib parts
