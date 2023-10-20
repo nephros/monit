@@ -12,7 +12,7 @@ Summary:    Community contributions for Monit
 Version:    1.0.2310201
 Release:    0
 Group:      Applications
-License:    public domain and ASL-2.0
+License:    CC0 and CC-BY-SA and ASL 2.0
 BuildArch:  noarch
 URL:        https://github.com/nephros/monit/
 Source0:    %{name}-%{version}.tar.gz
