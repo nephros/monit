@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: © 2023 Peter G. <sailfish@nephros.org>
+#
+# SPDX-License-Identifier: CC0-1.0
+
 BASE_DIR := /etc/monit.d
 CONFIG_DIR := $(BASE_DIR)/available
 SCRIPT_DIR := $(BASE_DIR)/scripts

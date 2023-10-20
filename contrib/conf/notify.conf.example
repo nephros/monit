@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: © 2023 Peter G. <sailfish@nephros.org>
+#
+# SPDX-License-Identifier: CC0-1.0
+
 #check foo
 #    if failed bar then
 #      exec '/etc/monit.d/scripts/notify-sfos.sh "Alert!" "something happened!"'   as uid "nemo" and gid "nemo"

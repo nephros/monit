@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# SPDX-FileCopyrightText: © 2023 Peter G. <sailfish@nephros.org>
+#
+# SPDX-License-Identifier: Apache-2.0
+
 # docs:
 # https://sailfishos.org/develop/docs/nemo-qml-plugin-notifications/qml-nemo-notifications-notification.html/
 

@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# SPDX-FileCopyrightText: © 2023 Peter G. <sailfish@nephros.org>
+#
+# SPDX-License-Identifier: Apache-2.0
+
 # this sends messages using a telegram bot.
 # you will need curl installed.
 # message the BotFather at Telegram to learn how to create a bot.
