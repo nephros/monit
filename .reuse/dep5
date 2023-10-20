@@ -1,0 +1,17 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: monit-contrib
+Upstream-Contact: Peter G. <sailfish@nephros.org>
+Source: https://github.com/nephros/monit
+
+Files: .gitignore Makefile
+Copyright: Peter G. (nephros) <sailfish@nephros.org>
+License: CC0-1.0
+
+Files: rpm/*-rpmlintrc rpm/*.changes rpm/*.spec rpm/*.yaml
+Copyright: Peter G. (nephros) <sailfish@nephros.org>
+License: CC0-1.0
+
+Files: README.md contrib/conf/README.md
+Copyright: Peter G. (nephros) <sailfish@nephros.org>
+License: CC-BY-SA-4.0
+
