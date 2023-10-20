@@ -71,9 +71,6 @@ rm -rf %{buildroot}
 %make_install
 
 # >> install post
-# install -contrib parts
-pushd contrib
-%make_install
 # << install post
 
 %files

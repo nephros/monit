@@ -12,11 +12,11 @@ README_FILES := conf/README.md
 
 INSTALL_CMD=/usr/bin/install
 
-all: install
 
 .PHONY: install
 .PRECIOUS: $(CONFIG_FILES) $(SCRIPT_FILES) $(README_FILES)
 
+default:
 
 install: install-conf install-bin install-readme
 
