@@ -22,3 +22,7 @@ You are cordially invited to submit issues or Pull Requests! This is a group eff
 
 https://github.com/nephros/monit
 
+### Licensing
+
+Please include REUSE-compliant copyright and licensing information in all your files.
+See https://reuse.software/tutorial/ for more information.
