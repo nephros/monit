@@ -1,7 +1,14 @@
-TEMPLATE = aux
+# uncommenting this will break qmake!
+# OTOH it will enable a pure QML app to be built without the Qt
+# devel packages installed:
+# TEMPLATE = aux
+
 # Configures svg to png
 THEMENAME = sailfish-default
 INSTALLS += svg appicon
+
+QMAKE_DISTCLEAN += -r ${_PRO_FILE_PWD_}/icons/z*
+QMAKE_DISTCLEAN += -r ${_PRO_FILE_PWD_}/icons/*x*
 
 appicon.sizes = \
     86 \

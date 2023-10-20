@@ -1,9 +1,6 @@
-
+TEMPLATE = aux
 TARGET = harbour-monit
-CONFIG += sailfishapp sailfishapp_i18n
-INCLUDEPATH += .
-
-QT =
+CONFIG += sailfishapp sailfishapp_qml
 
 lupdate_only {
 SOURCES += \
@@ -18,6 +15,7 @@ SOURCES += \
 }
 
 # if we have a binary:
+#INCLUDEPATH += .
 #SOURCES += src/main.cpp
 
 TRANSLATIONS += translations/$${TARGET}-en.ts \
@@ -33,9 +31,14 @@ qml.path = $$PREFIX/share/$${TARGET}
 
 INSTALLS += qml
 
+QMAKE_EXTRA_TARGETS += ts
+ts.commands = lupdate *.pro
+
+# sailfishapp has this already:
 OTHER_FILES += $$files(rpm/*)
 
+# NOTE: do not include TEMPLATE declarations in .pro files!
 include(translations/translations.pri)
 include(sailjail/sailjail.pri)
-# must be last
 include(icons/icons.pri)
+include(clean.pri)
